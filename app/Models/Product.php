@@ -16,11 +16,25 @@ class Product extends Model
 
     public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function auctions()
     {
         return $this->belongsTo(Auction::class);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class);
+    }
+    public function specifications()
+    {
+        return $this->belongsToMany(Specification::class);
     }
 }
