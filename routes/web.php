@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,40 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'welcome']);
+Route::view('/', 'welcome');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
-
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('table-list', function () {
-        return view('pages.table_list');
-    })->name('table');
-
-    Route::get('typography', function () {
-        return view('pages.typography');
-    })->name('typography');
-
-    Route::get('icons', function () {
-        return view('pages.icons');
-    })->name('icons');
-
-    Route::get('map', function () {
-        return view('pages.map');
-    })->name('map');
-
-    Route::get('notifications', function () {
-        return view('pages.notifications');
-    })->name('notifications');
-
-    Route::get('rtl-support', function () {
-        return view('pages.language');
-    })->name('language');
-
-    Route::get('upgrade', function () {
-        return view('pages.upgrade');
-    })->name('upgrade');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::view('table-list', 'pages.table_list')->name('table');
+    Route::view('typography', 'pages.typography')->name('typography');
+    Route::view('icons', 'pages.icons')->name('icons');
+    Route::view('map', 'pages.map')->name('map');
+    Route::view('notifications', 'pages.notifications')->name('notifications');
+    Route::view('rtl-support', 'pages.language')->name('language');
+    Route::view('upgrade', 'pages.upgrade')->name('upgrade');
 });
 
 Route::group(['middleware' => 'auth'], function () {
