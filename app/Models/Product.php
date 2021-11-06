@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use FFI;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +22,12 @@ class Product extends Model
 
     public function auctions()
     {
-        return $this->belongsTo(Auction::class);
+        return $this->hasMany(Auction::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
     }
 
     public function orders()
@@ -33,6 +39,7 @@ class Product extends Model
     {
         return $this->belongsToMany(Cart::class);
     }
+
     public function specifications()
     {
         return $this->belongsToMany(Specification::class);
