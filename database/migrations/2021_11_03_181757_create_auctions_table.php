@@ -15,7 +15,7 @@ class CreateAuctionsTable extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
-            $table->integer('min_price');
+            $table->integer('min_price')->nullable();
             $table->datetime('end_time');
             $table->foreignId('product_id');
             $table->timestamps();

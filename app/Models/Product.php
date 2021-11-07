@@ -22,13 +22,9 @@ class Product extends Model
 
     public function auctions()
     {
-        return $this->hasMany(Auction::class);
+        return $this->hasOne(Auction::class);
     }
 
-    public function files()
-    {
-        return $this->hasMany(File::class);
-    }
 
     public function orders()
     {
