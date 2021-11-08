@@ -22,7 +22,7 @@
   <link href="{{ asset('material') }}/css/material-dashboard-rtl.css?v=1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
-  
+
 
   <!-- Style Just for persian demo purpose, don't include it in your project -->
   <style>
@@ -60,7 +60,7 @@
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('home') }}">
               <i class="material-icons">dashboard</i>
-              <p>داشبورد</p>
+              <p>لوحة القيادة</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -84,19 +84,19 @@
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('map') }}">
               <i class="material-icons">location_ons</i>
-              <p>نقشه</p>
+              <p>الموقع</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('notifications') }}">
               <i class="material-icons">notifications</i>
-              <p>اعلان‌ها</p>
+              <p>الإشعارات</p>
             </a>
           </li>
           <li class="nav-item active  ">
             <a class="nav-link" href="{{ route('language') }}">
               <i class="material-icons">language</i>
-              <p>پشتیبانی از راست به چپ</p>
+              <p>اللغة</p>
             </a>
           </li>
            <li class="nav-item active-pro ">
@@ -104,7 +104,7 @@
                     <i class="material-icons">unarchive</i>
                     <p>Upgrade to PRO</p>
                 </a>
-            </li> 
+            </li>
         </ul>
       </div>
     </div>
@@ -113,7 +113,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">داشبورد</a>
+            <a class="navbar-brand" href="#pablo">لوحة القيادة</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -430,7 +430,7 @@
                                 </label>
                               </div>
                             </td>
-                            <td>بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته 
+                            <td>بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته
                             </td>
                             <td class="td-actions text-right">
                               <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
@@ -682,7 +682,7 @@
     <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
     <script src="{{ asset('material') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    
+
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script>
     <!-- Chartist JS -->
