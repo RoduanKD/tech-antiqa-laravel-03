@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateSumbissionAuctionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('sumbission_auction', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->string('area_id');
-            $table->foreignId('delivery_company_id');
-            $table->timestamp('accepted_at');
+            $table->integer('value');
+            $table->foreignId('autotion');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('sumbission_auction');
     }
 }

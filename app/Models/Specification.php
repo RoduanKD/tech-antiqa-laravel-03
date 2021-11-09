@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Specification extends Model
 {
     use HasFactory;
-    public function producs()
+    public function products()
     {
         return $this->belongsToMany(Product::class);
     }

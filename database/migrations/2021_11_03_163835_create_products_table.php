@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('category_id');
             $table->foreignId('user_id');
             $table->integer('price');
+            $table->string('language');
             $table->boolean('is_used');
             $table->integer('quantity');
             $table->timestamps();
