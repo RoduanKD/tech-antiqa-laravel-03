@@ -11,7 +11,7 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item {{ ($activePage == 'financial statement' || $activePage == 'user-management') ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'financial-statement' || $activePage == 'user-management' || $activePage == 'delivery-companies') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }} https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i>
           <!-- <i><img style="width:25px" href="https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i> -->
@@ -21,7 +21,7 @@
         </a>
         <div class="collapse show" id="laravelExample">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'financial-statement' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('profile.edit') }}">
                 <span class="sidebar-normal">{{ __('Financial Statement') }} </span>
               </a>
@@ -31,7 +31,7 @@
                 <span class="sidebar-normal"> {{ __('User Management') }} </span>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'delivery' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'delivery-companies' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.delivery') }}">
                   <span class="sidebar-normal"> {{ __('Delivery Companies') }} </span>
                 </a>
