@@ -1,8 +1,10 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 
-class DelivaryController extends Controller
+class DeliveryController extends Controller
 {
     /**
      * Display a listing of the users

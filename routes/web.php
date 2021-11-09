@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DeliveryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'public.home');
-Route::view('/delivery', [DelivaryController::class,'index'])->name('admin.delivery');
+Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
 
 Auth::routes();
 
@@ -28,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('notifications', 'pages.notifications')->name('notifications');
     Route::view('rtl-support', 'pages.language')->name('language');
     Route::view('upgrade', 'pages.upgrade')->name('upgrade');
+    Route::view('finance', 'admin.dashbord.financial');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -37,4 +39,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
-Route::get('admin/product/index',[AdminController::class,'index'])->name('admin.index');
+Route::get('admin/product/index', [AdminController::class, 'index'])->name('admin.index');
