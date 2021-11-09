@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome');
+Route::view('/delivery', 'admin.dashbord.delivery');
 
 Auth::routes();
 
