@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'public.home');
-Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::view('table-list', 'pages.table_list')->name('table');
     Route::view('typography', 'pages.typography')->name('typography');

@@ -16,7 +16,7 @@
                 class="nav-item {{ $activePage == 'financial-statement' || $activePage == 'user-management' || $activePage == 'delivery-companies' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
                     <i><img style="width:25px"
-                            src="{{ asset('material') }} https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i>
+                            src="https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i>
                     <!-- <i><img style="width:25px" href="https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i> -->
                     <p>{{ __('Dashboard') }}
                         <b class="caret"></b>
