@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
+    Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
+    Route::view('sales', 'admin.Fin.sales')->name('sales');
+    Route::view('profite', 'admin.Fin.profite')->name('profite');
+    Route::view('activearea', 'admin.Fin.activearea')->name('activearea');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::view('table-list', 'pages.table_list')->name('table');
     Route::view('typography', 'pages.typography')->name('typography');

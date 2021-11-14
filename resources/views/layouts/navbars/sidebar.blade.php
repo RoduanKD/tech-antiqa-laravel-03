@@ -25,7 +25,7 @@
                 <div class="collapse show" id="laravelExample">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'financial-statement' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('profile.edit') }}">
+                            <a class="nav-link" href="{{ route('admin.financial') }}">
                                 <span class="sidebar-normal">{{ __('Financial Statement') }} </span>
                             </a>
                         </li>
