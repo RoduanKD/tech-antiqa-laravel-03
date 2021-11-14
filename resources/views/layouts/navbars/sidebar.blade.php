@@ -43,13 +43,13 @@
                 </div>
             </li>
             <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
+                <a class="nav-link" data-toggle="collapse" href="#test" aria-expanded="true">
                     <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
                     <p>{{ __('Edit') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="laravelExample">
+                <div class="collapse show" id="test">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('profile.edit') }}">
