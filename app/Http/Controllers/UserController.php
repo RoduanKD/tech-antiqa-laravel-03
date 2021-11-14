@@ -19,25 +19,63 @@ class UserController extends Controller
     {
         return view('users.index', ['users' => $user]);
     }
+
+
     public function create(User $user)
     {
-        return view('users.create', ['user' => $user]);
+        return view('users.create', ['users' => $user]);
     }
+
+
     public function insert(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|min:10|max:55',
+            'email' => 'required|email',
+            'phone' => 'required|numeric|min:8',
+            'birthdate' => 'required|date',
+            'password' => 'required|password',
+
+        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->birthdate = $request->birthdate;
         $user->password = $request->password;
+        $user->save();
+        return view('users.index');
     }
-    public function edit(Type $var = null)
+
+
+    public function edit(User $user)
     {
-        # code...
+        return view('users.edit', ['users' => $user]);
     }
-    public function update(Type $var = null)
+
+
+    public function update(User $user, Request $request)
     {
-        # code...
+        $request->validate([
+            'name' => 'required|string|min:10|max:55',
+            'email' => 'required|email',
+            'phone' => 'required|numeric|min:8',
+            'birthdate' => 'required|date',
+            'password' => 'required|password',
+
+        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->birthdate = $request->birthdate;
+        $user->password = $request->password;
+        $user->save();
+        return redirect()->view('users.index');
+    }
+
+    public function show(User $user)
+    {
+        return view('/');
     }
 }
