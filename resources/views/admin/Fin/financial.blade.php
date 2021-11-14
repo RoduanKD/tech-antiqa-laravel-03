@@ -10,7 +10,12 @@
                         <h3 style="text-align:center">financial reports</h3>
                         </p>
                     </div>
-
+                    </div>
+                    <div class="card" style="width: 20rem;">
+                        <div class="center"><img class="card-img-top" src="https://www.clipartmax.com/png/small/306-3064329_degree-in-banking-and-finance-logo-political-icon-png-hd.png" rel="nofollow" alt="Card image cap" >
+                        <div class="card-body">
+                        </div>
+                      </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card-body">
@@ -52,4 +57,5 @@
             </div>
         </div>
     </div>
+
 @endsection
