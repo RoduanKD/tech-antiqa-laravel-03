@@ -12,6 +12,7 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
+            <!-- DASHBOARD -->
             <li
                 class="nav-item {{ $activePage == 'financial-statement' || $activePage == 'user-management' || $activePage == 'delivery-companies' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
@@ -28,11 +29,6 @@
                                 <span class="sidebar-normal">{{ __('Financial Statement') }} </span>
                             </a>
                         </li>
-                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <span class="sidebar-normal"> {{ __('User Management') }} </span>
-                            </a>
-                        </li>
                         <li class="nav-item{{ $activePage == 'delivery-companies' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.delivery') }}">
                                 <span class="sidebar-normal"> {{ __('Delivery Companies') }} </span>
@@ -41,6 +37,27 @@
                     </ul>
                 </div>
             </li>
+            <!-- USER PANEL -->
+            <li class="nav-item {{ $activePage == 'user-management' || $activePage == ' ' ? ' active' : '' }}">
+                <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="true">
+                    <i><img style="width:25px"
+                            src="https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i>
+                    <p>{{ __('User Panel') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse show" id="user">
+                    <ul class="nav">
+                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <span class="sidebar-normal"> {{ __('User Management') }} </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!--EDIT -->
             <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#test" aria-expanded="true">
                     <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
@@ -63,7 +80,7 @@
                     </ul>
                 </div>
             </li>
-
+            <!--ADD -->
             <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
                     <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
@@ -81,7 +98,7 @@
                     </ul>
                 </div>
             </li>
-
+            <!--MESSAGE -->
             <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
                     <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
