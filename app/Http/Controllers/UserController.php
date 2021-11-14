@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -20,11 +21,16 @@ class UserController extends Controller
     }
     public function create(User $user)
     {
-        return view('users.create', [['users' => $user]]);
+        return view('users.create', ['user' => $user]);
     }
-    public function insert(Type $var = null)
+    public function insert(Request $request)
     {
-        # code...
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->birthdate = $request->birthdate;
+        $user->password = $request->password;
     }
     public function edit(Type $var = null)
     {
