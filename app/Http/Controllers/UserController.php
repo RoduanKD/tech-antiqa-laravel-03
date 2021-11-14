@@ -15,19 +15,19 @@ class UserController extends Controller
      * @param  \App\Models\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $user)
+    public function index(User $model)
     {
-        return view('users.index', ['users' => $user]);
+        return view('users.index', ['users' => $model->paginate(15)]);
     }
 
 
-    public function create(User $user)
+    public function create()
     {
-        return view('users.create', ['users' => $user]);
+        return view('users.create');
     }
 
 
-    public function insert(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|min:10|max:55',
@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', ['users' => $user]);
+        return view('users.edit', ['user' => $user]);
     }
 
 
@@ -64,7 +64,6 @@ class UserController extends Controller
             'password' => 'required|password',
 
         ]);
-        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -76,6 +75,6 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('/');
+        // return view('/');
     }
 }

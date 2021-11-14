@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="{{ route('user.create', $users) }}" class="btn btn-sm btn-primary">Add
+                                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add
                                         user</a>
                                 </div>
                             </div>
@@ -38,17 +38,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    {{ $users->name }}
+                                                    {{ $user->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $users->email }}
+                                                    {{ $user->email }}
                                                 </td>
                                                 <td>
-                                                    {{ $users->created_at }}
+                                                    {{ $user->created_at }}
                                                 </td>
                                                 <td class="td-actions text-right">
                                                     <a rel="tooltip" class="btn btn-success btn-link"
-                                                        href="{{ route('user.edit', $users) }}" data-original-title=""
+                                                        href="{{ route('users.edit', $user) }}" data-original-title=""
                                                         title="">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>

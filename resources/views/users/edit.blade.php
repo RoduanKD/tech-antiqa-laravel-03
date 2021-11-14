@@ -9,8 +9,9 @@
                     @foreach ($errors->all() as $error) @endforeach
                 </ul>
 
-                <form action="{{ route('user.create') }}" method="POST" autocomplete="off" class="form-horizontal">
+                <form action="{{ route('users.update', $user) }}" method="POST" autocomplete="off" class="form-horizontal">
                     @csrf
+                    @method('PUT')
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title"> Edit User Information</h4>
@@ -35,8 +36,8 @@
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                            name="name" value="{{ old('name', $users->name) }}" id="input-name"
-                                            type="text" placeholder="{{ __(' Full Name') }}" aria-required="true" />
+                                            name="name" value="{{ old('name', $user->name) }}" id="input-name" type="text"
+                                            placeholder="{{ __(' Full Name') }}" aria-required="true" />
                                         @if ($errors->has('name'))
                                             <span id="name-error" class="error text-danger"
                                                 for="input-name">{{ $errors->first('name') }}</span>
@@ -63,7 +64,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                            name="email" value="{{ old('email', $users->email) }}" id="input-email"
+                                            name="email" value="{{ old('email', $user->email) }}" id="input-email"
                                             type="email" placeholder="{{ __('Email') }}" required />
                                         @if ($errors->has('email'))
                                             <span id="email-error" class="error text-danger"
@@ -77,7 +78,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                            name="phone" value="{{ old('phone', $users->phone) }}" id="input-phone"
+                                            name="phone" value="{{ old('phone', $user->phone) }}" id="input-phone"
                                             type="number" placeholder="{{ __('phone') }}" required />
                                         @if ($errors->has('phone'))
                                             <span id="phone-error" class="error text-danger"
@@ -91,7 +92,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('birthdate') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }}"
-                                            name="birthdate" value="{{ old('birthdate', $users->birthdate) }}"
+                                            name="birthdate" value="{{ old('birthdate', $user->birthdate) }}"
                                             id="input-birthdate" type="date" placeholder="{{ __('birthdate') }}"
                                             required />
                                         @if ($errors->has('birthdate'))
