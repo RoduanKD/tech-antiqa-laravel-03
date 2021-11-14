@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\PrivacyController;
+use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,12 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
+
+    Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::view('table-list', 'pages.table_list')->name('table');
     Route::view('typography', 'pages.typography')->name('typography');
