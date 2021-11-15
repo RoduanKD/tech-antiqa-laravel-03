@@ -34,7 +34,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'phone' => 'required|numeric|min:8',
             'birthdate' => 'required|date',
-            'password' => 'required|password',
+            'password' => 'required',
 
         ]);
         $user = new User();
@@ -44,7 +44,7 @@ class UserController extends Controller
         $user->birthdate = $request->birthdate;
         $user->password = $request->password;
         $user->save();
-        return view('users.index');
+        return redirect()->route('users', $user);
     }
 
 
@@ -76,5 +76,11 @@ class UserController extends Controller
     public function show(User $user)
     {
         // return view('/');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return view('users.index');
     }
 }

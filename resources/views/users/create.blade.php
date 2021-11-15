@@ -1,6 +1,4 @@
 @extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => 'User Mangement'])
-
-
 @section('content')
     <div class="content">
         <div class="section">
@@ -8,9 +6,10 @@
                 <ul>
                     @foreach ($errors->all() as $error) @endforeach
                 </ul>
-
-                <form action="{{ route('user.create') }}" method="POST" autocomplete="off" class="form-horizontal">
+                <!--USER FORME-->
+                <form action="{{ route('users.store') }}" method="POST" autocomplete="off" class="form-horizontal">
                     @csrf
+                    <!--STATIC SECTION-->
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title"> Create New User</h4>
@@ -30,6 +29,7 @@
                                     </div>
                                 </div>
                             @endif
+                            <!--NAME SECTION-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Full Name') }}</label>
                                 <div class="col-sm-7">
@@ -44,6 +44,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--PASSWORD SECTION-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label" for="input-password">{{ __('Password') }}</label>
                                 <div class="col-sm-7">
@@ -58,6 +59,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--EMAIL SECTION-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                                 <div class="col-sm-7">
@@ -72,12 +74,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--PHONE SECTION-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Phone') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                            name="phone" id="input-phone" type="number" placeholder="{{ __('phone') }}"
+                                            name="phone" id="input-phone" type="numbric" placeholder="{{ __('phone') }}"
                                             required />
                                         @if ($errors->has('phone'))
                                             <span id="phone-error" class="error text-danger"
@@ -86,6 +89,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--BIRTHDATE SECTION-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Birthdate') }}</label>
                                 <div class="col-sm-7">
@@ -100,27 +104,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--AGREMENT SECTION-->
                             <div class="row ">
                                 <label class="col-sm-7">
                                     <input type="checkbox">
                                     I agree to the <a href="#">terms and conditions</a>
                                 </label>
                             </div>
-                            <div class="row">
-
-                                <label class="col-sm-2 col-form-label ">
-                                    <input type="radio" name="question">
-                                    Yes
-                                </label>
-                                <label class="col-sm-2 col-form-label">
-                                    <input type="radio" name="question">
-                                    No
-                                </label>
-
-                            </div>
                         </div>
+                        <!--SUBMIT SECTION-->
                         <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-primary">{{ __('Registra') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
                             <button type="submit" class="btn btn-primary">{{ __('Cancel') }}</button>
                         </div>
                     </div>

@@ -4,18 +4,21 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <!--TITEL SECTION-->
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">Users</h4>
                             <p class="card-category"> Here you can manage users</p>
                         </div>
                         <div class="card-body">
+                            <!--ADD USERS SECTION-->
                             <div class="row">
                                 <div class="col-12 text-right">
                                     <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add
                                         user</a>
                                 </div>
                             </div>
+                            <!--STATIC INFO-->
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
@@ -34,6 +37,7 @@
                                             </th>
                                         </tr>
                                     </thead>
+                                    <!--DYNAMIC INFO-->
                                     @foreach ($users as $user)
                                         <tbody>
                                             <tr>
@@ -46,6 +50,7 @@
                                                 <td>
                                                     {{ $user->created_at }}
                                                 </td>
+                                                <!-- EDIT -->
                                                 <td class="td-actions text-right">
                                                     <a rel="tooltip" class="btn btn-success btn-link"
                                                         href="{{ route('users.edit', $user) }}" data-original-title=""
@@ -53,7 +58,15 @@
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </a>
+                                                    <a rel="tooltip" class="btn btn-danger btn-round"
+                                                        href="{{ route('users.destroy', $user) }}">
+                                                        <i class="material-icons">delete</i>
+                                                    </a>
                                                 </td>
+                                                {{-- <form action="{{ route('users.destory', $user) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form> --}}
                                             </tr>
                                         </tbody>
                                     @endforeach
