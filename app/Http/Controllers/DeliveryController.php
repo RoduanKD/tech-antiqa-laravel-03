@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Delivery_company;
 
 class DeliveryController extends Controller
 {
@@ -14,6 +15,14 @@ class DeliveryController extends Controller
      */
     public function index()
     {
+
         return view('admin.dashbord.delivery');
     }
 }
+/*public function index(Delivery_company $delivery_company)
+    {
+        $delivery_company = Delivery_company::all();
+        return view('admin.dashbord.delivery',['delivery'=>$delivery_company]);
+    }
+}*/
+
