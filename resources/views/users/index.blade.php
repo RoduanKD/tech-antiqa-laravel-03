@@ -58,15 +58,15 @@
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                    <a rel="tooltip" class="btn btn-danger btn-round"
-                                                        href="{{ route('users.destroy', $user) }}">
-                                                        <i class="material-icons">delete</i>
-                                                    </a>
+                                                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <a rel="tooltip" class="btn btn-danger btn-round"
+                                                            href="{{ route('users.index', $user) }}">
+                                                            <i class="material-icons">delete</i>
+                                                        </a>
+                                                    </form>
                                                 </td>
-                                                {{-- <form action="{{ route('users.destory', $user) }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                </form> --}}
                                             </tr>
                                         </tbody>
                                     @endforeach
