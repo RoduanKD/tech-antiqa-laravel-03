@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class PermissionsSeeder extends Seeder
 {
@@ -35,11 +36,10 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'delete category']);
 
         $role1 = Role::create(['name' => 'customer']);
-        $role1->givePermissionTo('create product ');
-        $role1->givePermissionTo('edit product ');
-        $role1->givePermissionTo('delete product ');
+        $role1->givePermissionTo('create product');
+        $role1->givePermissionTo('edit product');
+        $role1->givePermissionTo('delete product');
         $role1->givePermissionTo('publish product');
-        $role1->givePermissionTo('create information');
         $role1->givePermissionTo('edit information');
         $role1->givePermissionTo('delete information');
         $role1->givePermissionTo('create auction');
@@ -52,9 +52,12 @@ class PermissionsSeeder extends Seeder
 
         $role3 = Role::create(['name' => 'Super-Admin']);
 
+
         $user = User::factory()->create([
             'name' => 'Example User',
             'email' => 'test@example.com',
+            'phone' => '0946200078',
+            'birthdate' => '1999_10_02',
 
         ]);
         $user->assignRole($role1);
