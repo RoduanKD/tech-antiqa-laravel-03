@@ -12,7 +12,7 @@
                 <form action="{{ route('users.update', $user) }}" method="POST" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('PUT')
-                    <!--STATIC SECTION-->
+                    <!--STATIC -->
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title"> Edit User Information</h4>
@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                             @endif
-                            <!--NAME SECTION-->
+                            <!--NAME -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Full Name') }}</label>
                                 <div class="col-sm-7">
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--EMAIL SECTION-->
+                            <!--EMAIL -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                                 <div class="col-sm-7">
@@ -60,7 +60,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--PHONE SECTION-->
+                            <!--ROLE-->
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Role') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <div class="select is-rounded  @error('role_id')is-danger @enderror">
+                                            <select name="role_id" value="{{ old('role_id', $role->role_id) }}">
+                                                <option> Supervisor </option>
+                                                <option> Delivery Company</option>
+                                            </select>
+                                            <div>
+                                                @error('role_id')
+                                                    <div class="help is-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--PHONE -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Phone') }}</label>
                                 <div class="col-sm-7">
@@ -74,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--BIRTHDATE SECTION-->
+                            <!--BIRTHDATE -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Birthdate') }}</label>
                                 <div class="col-sm-7">
@@ -88,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--AGREEMENT SECTION-->
+                            <!--AGREEMENT -->
                             <div class="form-check mr-auto ml-3 mt-3">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="checkbox" id="policy" name="policy"
@@ -100,7 +119,7 @@
                                 </label>
                             </div>
                         </div>
-                        <!--SUBMIT SECTION-->
+                        <!--SUBMIT -->
                         <div class="card-footer ml-auto mr-auto">
                             <button type="submit" class="btn btn-primary">{{ __('Edit') }}</button>
                             <button type="submit" class="btn btn-primary">{{ __('Cancel') }}</button>
