@@ -66,7 +66,15 @@
                                                             <i class="material-icons">delete</i>
                                                         </button>
                                                     </form>
+                                                    <a rel="tooltip" class="btn btn-danger btn-round"
+                                                        href="{{ route('users.destroy', $user) }}">
+                                                        <i class="material-icons">delete</i>
+                                                    </a>
                                                 </td>
+                                                {{-- <form action="{{ route('users.destory', $user) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form> --}}
                                             </tr>
                                         </tbody>
                                     @endforeach

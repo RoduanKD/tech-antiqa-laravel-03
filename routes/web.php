@@ -28,11 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
     //Route::get('/addcompany', [AddcompanyController::class, 'index'])->name('admin.addcompany');
 
+    Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
 
-    Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
-    Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
-    Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
-    Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
     Route::view('addcompany', 'admin.dashbord.addcompany')->name('addcompany');

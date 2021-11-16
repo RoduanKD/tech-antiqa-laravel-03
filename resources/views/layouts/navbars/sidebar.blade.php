@@ -14,7 +14,7 @@
         <ul class="nav">
             <!-- DASHBOARD -->
             <li
-                class="nav-item {{ $activePage == 'financial-statement' || $activePage == 'delivery-companies' ? ' active' : '' }}">
+                class="nav-item {{ $activePage == 'financial-statement' || $activePage == 'user-management' || $activePage == 'delivery-companies' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
                     <i><img style="width:25px"
                             src="https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i>
@@ -40,24 +40,19 @@
                 </div>
             </li>
             <!-- USER PANEL -->
-            <li class="nav-item {{ $activePage == 'account' || $activePage == 'product ' ? ' active' : '' }}">
+            <li class="nav-item {{ $activePage == 'user-management' || $activePage == ' ' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="true">
                     <i><img style="width:25px"
                             src="https://www.seekpng.com/png/detail/85-856344_dashboard-icon-monitoring-and-control-icon.png"></i>
-                    <p>{{ __('User Managment') }}
+                    <p>{{ __('User Panel') }}
                         <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse show" id="user">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'account' ? ' active' : '' }}">
+                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('users.index') }}">
-                                <span class="sidebar-normal"> {{ __('Account') }} </span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'product' ? ' active' : '' }}">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-normal"> {{ __('Product') }} </span>
+                                <span class="sidebar-normal"> {{ __('User Management') }} </span>
                             </a>
                         </li>
                     </ul>
