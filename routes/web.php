@@ -3,12 +3,9 @@
 use App\Http\Controllers\AddcompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\FinancialController;
->>>>>>> efa47988536d704f740a15e6049df2aaf46574f7
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,16 +26,13 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
-<<<<<<< HEAD
     //Route::get('/addcompany', [AddcompanyController::class, 'index'])->name('admin.addcompany');
-=======
 
     Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
     Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
     Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
     Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
 
->>>>>>> efa47988536d704f740a15e6049df2aaf46574f7
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
     Route::view('addcompany', 'admin.dashbord.addcompany')->name('addcompany');
