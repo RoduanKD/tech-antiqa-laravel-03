@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => 'User Mangement'])
+@extends('layouts.app', ['activePage' => 'account', 'titlePage' => 'User Mangement'])
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -61,10 +61,10 @@
                                                     <form action="{{ route('users.destroy', $user) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        <a rel="tooltip" class="btn btn-danger btn-round"
-                                                            href="{{ route('users.index', $user) }}">
+                                                        <button rel="tooltip" class="btn btn-danger btn-round"
+                                                            type="submit">
                                                             <i class="material-icons">delete</i>
-                                                        </a>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>
