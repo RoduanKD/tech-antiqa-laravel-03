@@ -12,7 +12,7 @@
                 <form action="{{ route('users.update', $user) }}" method="POST" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('PUT')
-                    <!--STATIC SECTION-->
+                    <!--STATIC -->
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title"> Edit User Information</h4>
@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                             @endif
-                            <!--NAME SECTION-->
+                            <!--NAME -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Full Name') }}</label>
                                 <div class="col-sm-7">
@@ -46,22 +46,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--PASSWORD SECTION-->
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label" for="input-password">{{ __('Password') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group">
-                                        <input class="form-control" input
-                                            type="password @error('password')is-danger @enderror" name="password"
-                                            placeholder="{{ __('Password') }}"
-                                            value="{{ old('password', $user->password) }}" required />
-                                        @error('password')
-                                            <div class="help is-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <!--EMAIL SECTION-->
+                            <!--EMAIL -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                                 <div class="col-sm-7">
@@ -75,7 +60,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--PHONE SECTION-->
+                            <!--ROLE-->
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Role') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <div class="select is-rounded  @error('role_id')is-danger @enderror">
+                                            <select name="role_id" value="{{ old('role_id', $role->role_id) }}">
+                                                <option> Supervisor </option>
+                                                <option> Delivery Company</option>
+                                            </select>
+                                            <div>
+                                                @error('role_id')
+                                                    <div class="help is-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--PHONE -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Phone') }}</label>
                                 <div class="col-sm-7">
@@ -89,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--BIRTHDATE SECTION-->
+                            <!--BIRTHDATE -->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Birthdate') }}</label>
                                 <div class="col-sm-7">
@@ -103,15 +107,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--AGREEMENT SECTION-->
-                            <div class="row ">
-                                <label class="col-sm-7">
-                                    <input type="checkbox">
-                                    I agree to the <a href="#">terms and conditions</a>
+                            <!--AGREEMENT -->
+                            <div class="form-check mr-auto ml-3 mt-3">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" id="policy" name="policy"
+                                        {{ old('policy', 1) ? 'checked' : '' }}>
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                    {{ __('I agree with the ') }} <a href="#">{{ __('Privacy Policy') }}</a>
                                 </label>
                             </div>
                         </div>
-                        <!--SUBMIT SECTION-->
+                        <!--SUBMIT -->
                         <div class="card-footer ml-auto mr-auto">
                             <button type="submit" class="btn btn-primary">{{ __('Edit') }}</button>
                             <button type="submit" class="btn btn-primary">{{ __('Cancel') }}</button>

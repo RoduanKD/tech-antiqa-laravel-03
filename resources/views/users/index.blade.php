@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => 'User Mangement'])
+@extends('layouts.app', ['activePage' => 'account', 'titlePage' => 'User'])
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -58,15 +58,15 @@
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                    <a rel="tooltip" class="btn btn-danger btn-round"
-                                                        href="{{ route('users.destroy', $user) }}">
-                                                        <i class="material-icons">delete</i>
-                                                    </a>
+                                                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button rel="tooltip" class="btn btn-danger btn-round"
+                                                            type="submit">
+                                                            <i class="material-icons">delete</i>
+                                                        </button>
+                                                    </form>
                                                 </td>
-                                                {{-- <form action="{{ route('users.destory', $user) }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                </form> --}}
                                             </tr>
                                         </tbody>
                                     @endforeach

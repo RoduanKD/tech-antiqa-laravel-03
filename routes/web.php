@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddcompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
@@ -26,6 +27,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
+    //Route::get('/addcompany', [AddcompanyController::class, 'index'])->name('admin.addcompany');
 
     Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
     Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
@@ -35,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
+    Route::view('addcompany', 'admin.dashbord.addcompany')->name('addcompany');
     Route::view('profite', 'admin.Fin.profite')->name('profite');
     Route::view('activearea', 'admin.Fin.activearea')->name('activearea');
     Route::get('/home', [HomeController::class, 'index'])->name('home');

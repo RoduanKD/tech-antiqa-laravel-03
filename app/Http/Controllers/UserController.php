@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -23,54 +24,58 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', ['roles' => $roles]);
     }
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:10|max:55',
-            'email' => 'required|email',
-            'phone' => 'required|numeric|min:8',
+            'name'      => 'required|string|min:10|max:55',
+            'email'     => 'required|email|unique:users',
+            'phone'     => 'required|numeric|min:8',
             'birthdate' => 'required|date',
-            'password' => 'required',
+            'password'  => 'required',
+            'role_id'   => 'required'
 
         ]);
         $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
+        $user->name      = $request->name;
+        $user->email     = $request->email;
+        $user->phone     = $request->phone;
         $user->birthdate = $request->birthdate;
-        $user->password = $request->password;
+        $user->password  = $request->password;
         $user->save();
-        return redirect()->route('users', $user);
+        return redirect()->route('users.index', $user);
     }
 
 
-    public function edit(User $user)
+    public function edit(User $user, Role $role)
     {
-        return view('users.edit', ['user' => $user]);
+        return view('users.edit', ['user' => $user, 'role' => $role]);
     }
 
 
-    public function update(User $user, Request $request)
+    public function update(User $user, Role $role, Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:10|max:55',
-            'email' => 'required|email',
-            'phone' => 'required|numeric|min:8',
+            'name'      => 'required|string|min:10|max:55',
+            'email'     => 'required|email',
+            'phone'     => 'required|numeric|min:8',
             'birthdate' => 'required|date',
-            'password' => 'required|password',
+            'password'  => 'required',
+            ''
 
         ]);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
+        $user->name      = $request->name;
+        $user->email     = $request->email;
+        $user->phone     = $request->phone;
         $user->birthdate = $request->birthdate;
-        $user->password = $request->password;
+        $user->password  = $request->password;
+        $role->role_id   = $request->role_id;
         $user->save();
-        return redirect()->view('users.index');
+        return redirect()->back()->with('Profile successfully updated.');
     }
 
     public function show(User $user)
@@ -81,6 +86,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return view('users.index');
+        return redirect()->back();
     }
 }
