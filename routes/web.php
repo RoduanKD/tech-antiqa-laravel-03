@@ -5,6 +5,7 @@ use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\FinancialController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
     Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
     Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
+    Route::get('/message', [MessageController::class,'message'])->name('admin.message');
 
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
