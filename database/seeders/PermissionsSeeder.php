@@ -19,71 +19,75 @@ class PermissionsSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
         //Area
-        Permission::create(['name' => 'create area']);
-        Permission::create(['name' => 'update area']);
-        Permission::create(['name' => 'delete area']);
-        Permission::create(['name' => 'viewAny area']);
+        Permission::firstOrCreate(['name' => 'create area']);
+        Permission::firstOrCreate(['name' => 'update area']);
+        Permission::firstOrCreate(['name' => 'delete area']);
+        Permission::firstOrCreate(['name' => 'viewAny area']);
         //city
-        Permission::create(['name' => 'create city']);
-        Permission::create(['name' => 'update city']);
-        Permission::create(['name' => 'delete city']);
-        Permission::create(['name' => 'viewAny city']);
+        Permission::firstOrCreate(['name' => 'create city']);
+        Permission::firstOrCreate(['name' => 'update city']);
+        Permission::firstOrCreate(['name' => 'delete city']);
+        Permission::firstOrCreate(['name' => 'viewAny city']);
         //country
-        Permission::create(['name' => 'create country']);
-        Permission::create(['name' => 'update country']);
-        Permission::create(['name' => 'delete country']);
-        Permission::create(['name' => 'viewAny country']);
+        Permission::firstOrCreate(['name' => 'create country']);
+        Permission::firstOrCreate(['name' => 'update country']);
+        Permission::firstOrCreate(['name' => 'delete country']);
+        Permission::firstOrCreate(['name' => 'viewAny country']);
         //product
-        Permission::create(['name' => 'create product']);
-        Permission::create(['name' => 'update product']);
-        Permission::create(['name' => 'delete product']);
-        Permission::create(['name' => 'viewAny product']);
-        Permission::create(['name' => 'view product']);
+        Permission::firstOrCreate(['name' => 'create product']);
+        Permission::firstOrCreate(['name' => 'update product']);
+        Permission::firstOrCreate(['name' => 'delete product']);
+        Permission::firstOrCreate(['name' => 'viewAny product']);
+        Permission::firstOrCreate(['name' => 'view product']);
         //category
-        Permission::create(['name' => 'create category']);
-        Permission::create(['name' => 'update category']);
-        Permission::create(['name' => 'delete category']);
-        Permission::create(['name' => 'viewAny category']);
+        Permission::firstOrCreate(['name' => 'create category']);
+        Permission::firstOrCreate(['name' => 'update category']);
+        Permission::firstOrCreate(['name' => 'delete category']);
+        Permission::firstOrCreate(['name' => 'viewAny category']);
         //specification
-        Permission::create(['name' => 'create specification']);
-        Permission::create(['name' => 'update specification']);
-        Permission::create(['name' => 'delete specification']);
-        Permission::create(['name' => 'viewAny specification']);
+        Permission::firstOrCreate(['name' => 'create specification']);
+        Permission::firstOrCreate(['name' => 'update specification']);
+        Permission::firstOrCreate(['name' => 'delete specification']);
+        Permission::firstOrCreate(['name' => 'viewAny specification']);
         //auction
-        Permission::create(['name' => 'create auction']);
-        Permission::create(['name' => 'update auction']);
-        Permission::create(['name' => 'delete auction']);
-        Permission::create(['name' => 'viewAny auction']);
-        Permission::create(['name' => 'view auction']);
+        Permission::firstOrCreate(['name' => 'create auction']);
+        Permission::firstOrCreate(['name' => 'update auction']);
+        Permission::firstOrCreate(['name' => 'delete auction']);
+        Permission::firstOrCreate(['name' => 'viewAny auction']);
+        Permission::firstOrCreate(['name' => 'view auction']);
         //cart
-        Permission::create(['name' => 'create cart']);
-        Permission::create(['name' => 'update cart']);
-        Permission::create(['name' => 'viewAny cart']);
-        Permission::create(['name' => 'view cart']);
+        Permission::firstOrCreate(['name' => 'create cart']);
+        Permission::firstOrCreate(['name' => 'update cart']);
+        Permission::firstOrCreate(['name' => 'viewAny cart']);
+        Permission::firstOrCreate(['name' => 'view cart']);
+        Permission::firstOrCreate(['name' => 'delete cart']);
+
         //Delivery
-        Permission::create(['name' => 'create delivery']);
-        Permission::create(['name' => 'update delivery']);
-        Permission::create(['name' => 'delete delivery']);
-        Permission::create(['name' => 'viewAny delivery']);
-        Permission::create(['name' => 'view delivery']);
+        Permission::firstOrCreate(['name' => 'create delivery']);
+        Permission::firstOrCreate(['name' => 'update delivery']);
+        Permission::firstOrCreate(['name' => 'delete delivery']);
+        Permission::firstOrCreate(['name' => 'viewAny delivery']);
+        Permission::firstOrCreate(['name' => 'view delivery']);
         //message
-        Permission::create(['name' => 'create message']);
-        Permission::create(['name' => 'viewAny message']);
+        Permission::firstOrCreate(['name' => 'create message']);
+        Permission::firstOrCreate(['name' => 'viewAny message']);
         //order
-        Permission::create(['name' => 'create order']);
-        Permission::create(['name' => 'update order']);
-        Permission::create(['name' => 'delete order']);
-        Permission::create(['name' => 'viewAny order']);
+        Permission::firstOrCreate(['name' => 'create order']);
+        Permission::firstOrCreate(['name' => 'update order']);
+        Permission::firstOrCreate(['name' => 'delete order']);
+        Permission::firstOrCreate(['name' => 'viewAny order']);
+        Permission::firstOrCreate(['name' => 'view order']);
+
         //user
-        Permission::create(['name' => 'create user']);
-        Permission::create(['name' => 'update user']);
-        Permission::create(['name' => 'delete user']);
-        Permission::create(['name' => 'viewAny user']);
-        Permission::create(['name' => 'view user']);
+        Permission::firstOrCreate(['name' => 'create user']);
+        Permission::firstOrCreate(['name' => 'update user']);
+        Permission::firstOrCreate(['name' => 'delete user']);
+        Permission::firstOrCreate(['name' => 'viewAny user']);
+        Permission::firstOrCreate(['name' => 'view user']);
 
         //Roles
         //Super Admin
-        $role1 = Role::create(['name' => 'Super-Admin']);
+        $role1 = Role::firstOrCreate(['name' => 'super-admin']);
         $role1->givePermissionTo('create area');
         $role1->givePermissionTo('update area');
         $role1->givePermissionTo('delete area');
@@ -126,7 +130,7 @@ class PermissionsSeeder extends Seeder
 
 
         //Supervisor
-        $role2 = Role::create(['name' => 'supervisor']);
+        $role2 = Role::firstOrCreate(['name' => 'supervisor']);
         $role2->givePermissionTo('create area');
         $role2->givePermissionTo('update area');
         $role2->givePermissionTo('viewAny area');
@@ -150,7 +154,7 @@ class PermissionsSeeder extends Seeder
         $role2->givePermissionTo('update user');
         $role2->givePermissionTo('viewAny user');
         //customer
-        $role3 = Role::create(['name' => 'customer']);
+        $role3 = Role::firstOrCreate(['name' => 'customer']);
         $role3->givePermissionTo('create product');
         $role3->givePermissionTo('update product');
         $role3->givePermissionTo('delete product');
@@ -160,7 +164,7 @@ class PermissionsSeeder extends Seeder
         $role3->givePermissionTo('delete auction');
         $role3->givePermissionTo('view auction');
         $role3->givePermissionTo('update cart');
-        $role3->givePermissionTo('delet cart');
+        $role3->givePermissionTo('delete cart');
         $role3->givePermissionTo('view cart');
         $role3->givePermissionTo('viewAny delivery');
         $role3->givePermissionTo('create message');
@@ -171,7 +175,7 @@ class PermissionsSeeder extends Seeder
         $role3->givePermissionTo('view user');
 
         //Delivery Company
-        $role4 = Role::create(['name' => 'delivery-company']);
+        $role4 = Role::firstOrCreate(['name' => 'delivery-company']);
         $role4->givePermissionTo('view delivery');
         $role4->givePermissionTo('update delivery');
         $role4->givePermissionTo('create message');
@@ -180,7 +184,7 @@ class PermissionsSeeder extends Seeder
         $role4->givePermissionTo('update user');
         $role4->givePermissionTo('view user');
         //Visitor
-        $role5 = Role::create(['name' => 'visitor']);
+        $role5 = Role::firstOrCreate(['name' => 'visitor']);
         $role5->givePermissionTo('viewAny product');
         $role5->givePermissionTo('viewAny auction');
         $role5->givePermissionTo('viewAny delivery');
@@ -190,13 +194,14 @@ class PermissionsSeeder extends Seeder
 
         //Exampel Users //password
         $user = User::factory()->create([
-            'name' => 'Example Super-Admin ',
+            'name' => 'Example super-admin ',
             'email' => 'admin@example.com',
             'phone' => '0946200078',
             'birthdate' => '1999_10_02',
 
         ]);
         $user->assignRole($role1);
+        User::first()->assignRole($role1);
 
         $user = User::factory()->create([
             'name' => 'Example Supervisor',

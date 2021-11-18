@@ -80,8 +80,9 @@
                                     <div class="form-group">
                                         <div class="select is-rounded  @error('role_id')is-danger @enderror">
                                             <select name="role_id">
-                                                <option> Supervisor </option>
-                                                <option> Delivery Company</option>
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                @endforeach
                                             </select>
                                             <div>
                                                 @error('role_id')

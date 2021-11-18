@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'accepted_at'   => 'datetime'
+    ];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function products()
     {
         return $this->belongsToMany(Product::class);
@@ -16,5 +25,8 @@ class Order extends Model
     {
         return $this->belongsTo(Delivery_company::class);
     }
-
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }

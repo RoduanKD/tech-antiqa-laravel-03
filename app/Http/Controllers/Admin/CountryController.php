@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Cart;
-use App\Models\Product;
+use App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::all();
-        $products = Product::all();
-
-        return view('carts.index', ['carts' => $carts, 'products' => $products]);
+        //
     }
 
     /**
@@ -39,27 +36,31 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $country = Country::create([
+            'name'  => ['en' => $request->name_en, 'ar' => $request->name_ar],
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Country $country)
     {
-        //
+        $cities = $country->cities;
+
+        return view('countries.create', ['cities' => $cities]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Country $country)
     {
         //
     }
@@ -68,10 +69,10 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Country $country)
     {
         //
     }
@@ -79,10 +80,10 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Country $country)
     {
         //
     }

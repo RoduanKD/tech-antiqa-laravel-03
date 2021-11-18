@@ -35,13 +35,13 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    {{ $order->user_id }}
+                                                    {{ $order->owner->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->area_id }}
+                                                    {{ $order->area->name_en }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->accepted_at }}
+                                                    {{ $order->accepted_at->diffForHumans() }}
                                                 </td>
                                                 <!-- EDIT -->
                                                 <td class="td-actions text-right">
