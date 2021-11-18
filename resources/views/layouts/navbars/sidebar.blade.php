@@ -57,12 +57,12 @@
                             </a>
                         </li>
                         <li class="nav-item{{ $activePage == 'cart' ? ' active' : '' }}">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{route('carts.index')}}">
                                 <span class="sidebar-normal"> {{ __('Carts') }} </span>
                             </a>
                         </li>
                         <li class="nav-item{{ $activePage == 'order' ? ' active' : '' }}">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{route('orders.index')}}">
                                 <span class="sidebar-normal"> {{ __('Orders') }} </span>
                             </a>
                         </li>
