@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AddcompanyController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
@@ -27,7 +27,6 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
-    //Route::get('/addcompany', [AddcompanyController::class, 'index'])->name('admin.addcompany');
 
     Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
     Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
@@ -37,7 +36,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
-    Route::view('addcompany', 'admin.dashbord.addcompany')->name('addcompany');
     Route::view('profite', 'admin.Fin.profite')->name('profite');
     Route::view('activearea', 'admin.Fin.activearea')->name('activearea');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -49,7 +47,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('rtl-support', 'pages.language')->name('language');
     Route::view('upgrade', 'pages.upgrade')->name('upgrade');
     Route::view('finance', 'admin.dashbord.financial');
+
+
+    Route::get('/countries/edit', [CountryController::class,'edit'])->name('countries.edit');
+    Route::get('/countries/create', [CountryController::class,'create'])->name('countries.create');
+
 });
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
