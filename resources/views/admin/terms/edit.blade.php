@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="container-fluid">
                 <div class="card card-plain">
-                    <div class="card-header card-header-primary">
+                    <div class="card-header card-header-danger">
                         <h1 style="text-align:center">Terms of use Tech Anticqa</h1>
                         <h5> Please read these terms of use carefully before using this website, and that by using this
                             website, you agree to these terms of use and the current terms of use will be modified from time
@@ -16,7 +16,7 @@
 
                     <div class="col-md-14">
                         <div class="card">
-                            <div class="card-header card-header-text card-header-primary">
+                            <div class="card-header card-header-text card-header-danger">
                               <div class="card-text">
                                 <h4 class="card-title">Edit the Terms</h4>
                               </div>
@@ -36,7 +36,7 @@
                         <div class="iframe-container d-none d-lg-block">
                             <form>
                                 <div style="text-align:center"> To Edit the Terms of the company, please click here :
-                                    <br> <button type="button" class="btn btn-primary">Save Change</button>
+                                    <br> <button type="button" class="btn btn-danger">Save Change</button>
                             </form>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
-@extends('layouts.app', ['activePage' => 'account', 'titlePage' => 'User'])
+@extends('layouts.app', ['activePage' => 'order', 'titlePage' => 'Orders'])
+
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -7,30 +8,22 @@
                     <!--TITEL SECTION-->
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Users</h4>
-                            <p class="card-category"> Here you can manage users</p>
+                            <h4 class="card-title ">Orders</h4>
+                            <p class="card-category"> Here you can manage Orders</p>
                         </div>
                         <div class="card-body">
-                            <!--ADD USERS SECTION-->
-                            <div class="row">
-                                <div class="col-12 text-right">
-                                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add
-                                        user</a>
-                                </div>
-                            </div>
-                            <!--STATIC INFO-->
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
                                         <tr>
                                             <th>
-                                                Name
+                                                Oner
                                             </th>
                                             <th>
-                                                Email
+                                                Area
                                             </th>
                                             <th>
-                                                Creation date
+                                                Accepted at
                                             </th>
                                             <th class="text-right">
                                                 Actions
@@ -38,27 +31,26 @@
                                         </tr>
                                     </thead>
                                     <!--DYNAMIC INFO-->
-                                    @foreach ($users as $user)
+                                    @foreach ($orders as $order)
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    {{ $user->name }}
+                                                    {{ $order->owner->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->email }}
+                                                    {{ $order->area->name_en }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->created_at }}
+                                                    {{ $order->accepted_at->diffForHumans() }}
                                                 </td>
                                                 <!-- EDIT -->
                                                 <td class="td-actions text-right">
-                                                    <a rel="tooltip" class="btn btn-success btn-link"
-                                                        href="{{ route('users.edit', $user) }}" data-original-title=""
-                                                        title="">
+                                                    <a rel="tooltip" class="btn btn-success btn-link" href="#"
+                                                        data-original-title="" title="">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                                                    <form action="{{ route('orders.destroy', $order) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
                                                         <button rel="tooltip" class="btn btn-danger btn-round"
@@ -72,10 +64,12 @@
                                     @endforeach
                                 </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

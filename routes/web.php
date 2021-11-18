@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\AddcompanyController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\FinancialController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,16 +30,19 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
-    //Route::get('/addcompany', [AddcompanyController::class, 'index'])->name('admin.addcompany');
 
-    Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
-    Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
-    Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
-    Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
+    Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
+    Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
+    Route::get('/message', [MessageController::class, 'message'])->name('admin.message');
 
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
-    Route::view('addcompany', 'admin.dashbord.addcompany')->name('addcompany');
     Route::view('profite', 'admin.Fin.profite')->name('profite');
     Route::view('activearea', 'admin.Fin.activearea')->name('activearea');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -47,10 +54,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('rtl-support', 'pages.language')->name('language');
     Route::view('upgrade', 'pages.upgrade')->name('upgrade');
     Route::view('finance', 'admin.dashbord.financial');
+
+
+    Route::get('/countries/edit', [CountryController::class, 'edit'])->name('countries.edit');
+    Route::get('/countries/create', [CountryController::class, 'create'])->name('countries.create');
 });
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('carts', CartController::class);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
