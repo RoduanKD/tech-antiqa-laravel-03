@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="container-fluid">
                 <div class="card card-plain">
-                    <div class="card-header card-header-primary">
+                    <div class="card-header card-header-danger">
                         <h1 style="text-align:center">Delivery Companies</h1>
                         <h3 style="text-align:center">Transport company data</h3>
                         </p>
