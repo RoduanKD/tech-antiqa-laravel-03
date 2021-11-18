@@ -18,12 +18,14 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
+        $this->authorize('viewAny',User::class);
         return view('users.index', ['users' => $model->paginate(15)]);
     }
 
 
     public function create()
     {
+        $this->authorize('create',User::class);
         $roles = Role::all();
         return view('users.create', ['roles' => $roles]);
     }
@@ -53,6 +55,7 @@ class UserController extends Controller
 
     public function edit(User $user, Role $role)
     {
+        $this->authorize('update',User::class);
         return view('users.edit', ['user' => $user, 'role' => $role]);
     }
 
@@ -85,6 +88,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $this->authorize('delete',User::class);
         $user->delete();
         return redirect()->back();
     }
