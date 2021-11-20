@@ -18,7 +18,7 @@ class SpecificationPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny specification');
     }
 
     /**
@@ -41,7 +41,7 @@ class SpecificationPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create specification');
     }
 
     /**
@@ -53,7 +53,7 @@ class SpecificationPolicy
      */
     public function update(User $user, Specification $specification)
     {
-        //
+        return $user->can('update specification');
     }
 
     /**
@@ -65,7 +65,7 @@ class SpecificationPolicy
      */
     public function delete(User $user, Specification $specification)
     {
-        //
+        return $user->can('delete specification');
     }
 
     /**

@@ -18,7 +18,7 @@ class AreaPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny area');
     }
 
     /**
@@ -41,7 +41,7 @@ class AreaPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create area');
     }
 
     /**
@@ -53,7 +53,7 @@ class AreaPolicy
      */
     public function update(User $user, Area $area)
     {
-        //
+        return $user->can('update area');
     }
 
     /**
@@ -65,7 +65,7 @@ class AreaPolicy
      */
     public function delete(User $user, Area $area)
     {
-        //
+        return $user->can('delete area');
     }
 
     /**

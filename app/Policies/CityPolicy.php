@@ -18,7 +18,7 @@ class CityPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny city');
     }
 
     /**
@@ -41,7 +41,7 @@ class CityPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create city');
     }
 
     /**
@@ -53,7 +53,7 @@ class CityPolicy
      */
     public function update(User $user, City $city)
     {
-        //
+        return $user->can('update city');
     }
 
     /**
@@ -65,7 +65,7 @@ class CityPolicy
      */
     public function delete(User $user, City $city)
     {
-        //
+        return $user->can('delete city');
     }
 
     /**

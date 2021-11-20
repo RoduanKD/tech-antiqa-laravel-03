@@ -18,7 +18,7 @@ class MessagePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny message');
     }
 
     /**
@@ -41,7 +41,7 @@ class MessagePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create message');
     }
 
     /**

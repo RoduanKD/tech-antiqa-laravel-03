@@ -18,7 +18,7 @@ class AuctionPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny auction');
     }
 
     /**
@@ -30,7 +30,7 @@ class AuctionPolicy
      */
     public function view(User $user, Auction $auction)
     {
-        //
+        return $user->can('view auction');
     }
 
     /**
@@ -41,7 +41,7 @@ class AuctionPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create auction');
     }
 
     /**
@@ -53,7 +53,7 @@ class AuctionPolicy
      */
     public function update(User $user, Auction $auction)
     {
-        //
+        return $user->id == $auction->id || $user->can('update auction');
     }
 
     /**
@@ -65,7 +65,7 @@ class AuctionPolicy
      */
     public function delete(User $user, Auction $auction)
     {
-        //
+        return $user->id == $auction->id || $user->can('delete auction');
     }
 
     /**

@@ -18,7 +18,7 @@ class OrderPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny order');
     }
 
     /**
@@ -30,7 +30,7 @@ class OrderPolicy
      */
     public function view(User $user, Order $order)
     {
-        //
+        return $user->id == $order->id || $user->can('view order');
     }
 
     /**
@@ -41,7 +41,7 @@ class OrderPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create order');
     }
 
     /**
@@ -53,7 +53,7 @@ class OrderPolicy
      */
     public function update(User $user, Order $order)
     {
-        //
+        return $user->id == $order->id || $user->can('update order');
     }
 
     /**
@@ -65,7 +65,8 @@ class OrderPolicy
      */
     public function delete(User $user, Order $order)
     {
-        //
+        return $user->can('delete order');
+
     }
 
     /**

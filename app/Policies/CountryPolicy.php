@@ -18,7 +18,7 @@ class CountryPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny country');
     }
 
     /**
@@ -41,7 +41,7 @@ class CountryPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create country');
     }
 
     /**
@@ -53,7 +53,7 @@ class CountryPolicy
      */
     public function update(User $user, Country $country)
     {
-        //
+        return $user->can('update country');
     }
 
     /**
@@ -65,7 +65,7 @@ class CountryPolicy
      */
     public function delete(User $user, Country $country)
     {
-        //
+        return $user->can('delete country');
     }
 
     /**

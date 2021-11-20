@@ -18,7 +18,7 @@ class Delivery_companyPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('viewAny delivery');
     }
 
     /**
@@ -30,7 +30,7 @@ class Delivery_companyPolicy
      */
     public function view(User $user, Delivery_company $deliveryCompany)
     {
-        //
+        return $user->id == $deliveryCompany->id || $user->can('view delivery');
     }
 
     /**
@@ -41,7 +41,7 @@ class Delivery_companyPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('create delivery');
     }
 
     /**
@@ -53,7 +53,7 @@ class Delivery_companyPolicy
      */
     public function update(User $user, Delivery_company $deliveryCompany)
     {
-        //
+        return $user->id == $deliveryCompany->id || $user->can('update delivery');
     }
 
     /**
@@ -65,7 +65,7 @@ class Delivery_companyPolicy
      */
     public function delete(User $user, Delivery_company $deliveryCompany)
     {
-        //
+        return $user->can('delete delivery');
     }
 
     /**
