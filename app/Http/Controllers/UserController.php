@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Propaganistas\LaravelPhone\PhoneNumber;
@@ -50,6 +51,7 @@ class UserController extends Controller
         $user->phone     = (string) PhoneNumber::make($request->phone);
         $user->birthdate = $request->birthdate;
         $user->password  = $request->password;
+        $user->assignRole($request->role_id);
         $user->save();
         return redirect()->route('users.index', $user);
     }
@@ -88,7 +90,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         $this->authorize('view', $user);
-        // return view('/');
+        $cart = Cart::all();
+        $cart = $cart->products;
+        return view('users.show', ['user' => $user, 'cart' => $cart]);
     }
 
     public function destroy(User $user)

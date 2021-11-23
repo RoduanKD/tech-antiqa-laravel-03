@@ -42,7 +42,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    {{ $user->name }}
+                                                    <a href="{{ route('users.show',$user) }}"> {{ $user->name }} </a>
                                                 </td>
                                                 <td>
                                                     {{ $user->email }}
@@ -52,15 +52,15 @@
                                                 </td>
                                                 <!-- EDIT -->
                                                 <td class="td-actions text-right">
-                                                    <a rel="tooltip" class="btn btn-success btn-link"
-                                                        href="{{ route('users.edit', $user) }}" data-original-title=""
-                                                        title="">
-                                                        <i class="material-icons">edit</i>
-                                                        <div class="ripple-container"></div>
-                                                    </a>
                                                     <form action="{{ route('users.destroy', $user) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
+                                                        <a rel="tooltip" class="btn btn-success btn-link"
+                                                            href="{{ route('users.edit', $user) }}" data-original-title=""
+                                                            title="">
+                                                            <i class="material-icons">edit</i>
+                                                            <div class="ripple-container"></div>
+                                                        </a>
                                                         <button rel="tooltip" class="btn btn-danger btn-round"
                                                             type="submit">
                                                             <i class="material-icons">delete</i>
