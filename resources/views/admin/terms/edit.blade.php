@@ -24,6 +24,7 @@
                             <div class="card-body">
                                 <textarea class="textarea " name="content"
                                 placeholder="Please Enter for Edit"></textarea>
+
                             </div>
                         </div>
                     </div>

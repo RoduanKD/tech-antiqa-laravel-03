@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Country;
+use App\Models\City;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +36,7 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $country = Country::create([
+        $city = City::create([
             'name' => ['en' => $request->name_en,  'ar' => $request->name_ar,],
         ]);
     }
@@ -44,24 +44,24 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show(City $city)
     {
-        $cities = $country->cities;
 
+        $areas = $city-> areas;
 
-        return view('countries.show', ['cities' => $cities]);
+        return view('cities.show', ['$areas'=> $areas]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit(City $city)
     {
         //
     }
@@ -70,10 +70,10 @@ class CountryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, City $city)
     {
         //
     }
@@ -81,12 +81,12 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(City $city)
     {
-        $country->delete();
+        $city->delete();
         return redirect()->back();
     }
 }

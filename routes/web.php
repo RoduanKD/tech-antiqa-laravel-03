@@ -1,14 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\AddcompanyController;
 
 
-use App\Http\Controllers\CountryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\FinancialController;
+use App\Http\Controllers\LetterController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\OrderController;
@@ -32,6 +35,12 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
+
+    Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
+
 
     Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
     Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
@@ -58,8 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('finance', 'admin.dashbord.financial');
 
 
-    Route::get('/countries/edit', [CountryController::class, 'edit'])->name('countries.edit');
-    Route::get('/countries/create', [CountryController::class, 'create'])->name('countries.create');
+    
 });
 
 
@@ -73,3 +81,14 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('admin/product/index', [AdminController::class, 'index'])->name('admin.index');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('countries', CountryController::class);
+    Route::resource('cities', CityController::class);
+    Route::resource('areas', AreaController::class);
+
+});
+
+Route::get('/message', [MessageController::class,'message'])->name('message');
+Route::post('/message', [LetterController::class, 'store']);
+

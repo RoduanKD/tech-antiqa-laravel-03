@@ -8,7 +8,7 @@ class MessageController extends Controller
 {
     public function message()
     {
-        return view('admin.message');
+        return view('message');
     }
 
 

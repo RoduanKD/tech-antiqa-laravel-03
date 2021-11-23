@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Country;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +36,7 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $country = Country::create([
+        $area = Area::create([
             'name' => ['en' => $request->name_en,  'ar' => $request->name_ar,],
         ]);
     }
@@ -44,24 +44,21 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show(Area $area)
     {
-        $cities = $country->cities;
-
-
-        return view('countries.show', ['cities' => $cities]);
+        return view('areas.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit(Area $area)
     {
         //
     }
@@ -70,10 +67,10 @@ class CountryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, Area $area)
     {
         //
     }
@@ -81,12 +78,12 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(Area $area)
     {
-        $country->delete();
+        $area->delete();
         return redirect()->back();
     }
 }
