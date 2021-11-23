@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\CountryController;
+use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\FinancialController;
+use App\Http\Controllers\LetterController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
     Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
     Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
-    Route::get('/message', [MessageController::class,'message'])->name('admin.message');
+
+
 
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
@@ -49,8 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('finance', 'admin.dashbord.financial');
 
 
-    Route::get('/countries/edit', [CountryController::class,'edit'])->name('countries.edit');
-    Route::get('/countries/create', [CountryController::class,'create'])->name('countries.create');
 
 });
 
@@ -63,3 +65,14 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('admin/product/index', [AdminController::class, 'index'])->name('admin.index');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('countries', CountryController::class);
+    Route::resource('cities', CityController::class);
+    Route::resource('areas', AreaController::class);
+
+});
+
+Route::get('/message', [MessageController::class,'message'])->name('message');
+Route::post('/message', [LetterController::class, 'store']);
+

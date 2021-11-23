@@ -122,10 +122,25 @@
                 <div class="collapse show" id="place">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'country' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('countries.edit') }}">
-                                <span class="sidebar-normal"> {{ __('Country - City - Area') }} </span>
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-normal"> {{ __('Country') }} </span>
                             </a>
                     </ul>
+
+                    <ul class="nav">
+                        <li class="nav-item{{ $activePage == 'city' ? ' active' : '' }}">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-normal"> {{ __('City') }} </span>
+                            </a>
+                    </ul>
+
+                    <ul class="nav">
+                        <li class="nav-item{{ $activePage == 'area' ? ' active' : '' }}">
+                            <a class="nav-link" href="#">
+                                <span class="sidebar-normal"> {{ __('Area') }} </span>
+                            </a>
+                    </ul>
+
                 </div>
             </li>
             <!--MESSAGE -->
@@ -139,7 +154,7 @@
                 <div class="collapse show" id="massage">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.message') }}">
+                            <a class="nav-link" href="{{ route('message') }}">
                                 <span class="sidebar-normal">{{ __('Contact with Supervisor') }} </span>
                             </a>
                         </li>
