@@ -15,10 +15,8 @@ class CreateDeliveryCompaniesTable extends Migration
     {
         Schema::create('delivery_companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ar');
-            $table->string('name_en');
-            $table->string('address_ar');
-            $table->string('address_en');
+            $table->json('name');
+            $table->json('address');
             $table->string('phone_number');
             $table->string('email');
             $table->timestamps();

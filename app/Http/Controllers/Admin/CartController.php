@@ -49,7 +49,8 @@ class CartController extends Controller
     public function show(Cart $cart)
     {
         $this->authorize('view', $cart);
-        return view('carts.show', ['cart' => $cart]);
+        $products = $cart->products;
+        return view('carts.show', ['cart'=>$cart ,'products' => $products]);
     }
 
     /**

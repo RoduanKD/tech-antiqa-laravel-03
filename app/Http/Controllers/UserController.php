@@ -91,8 +91,8 @@ class UserController extends Controller
     {
         $this->authorize('view', $user);
         $cart = Cart::all();
-        $cart = $cart->products;
-        return view('users.show', ['user' => $user, 'cart' => $cart]);
+        //$carts = $produ->carts;
+        return view('users.show', ['user' => $user, 'cart' => $cart ]);
     }
 
     public function destroy(User $user)

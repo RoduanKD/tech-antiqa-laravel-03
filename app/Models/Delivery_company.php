@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Delivery_company extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
+    public $translatable = ['name'];
     public function orders()
     {
         return $this->hasMany(Order::class);
@@ -17,5 +19,4 @@ class Delivery_company extends Model
     {
         return $this->belongsToMany(Areas::class);
     }
-
 }

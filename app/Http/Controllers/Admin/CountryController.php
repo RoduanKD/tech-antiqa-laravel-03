@@ -50,7 +50,6 @@ class CountryController extends Controller
     public function show(Country $country)
     {
         $cities = $country->cities;
-
         return view('countries.create', ['cities' => $cities]);
     }
 
