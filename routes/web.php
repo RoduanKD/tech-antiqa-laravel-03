@@ -3,6 +3,9 @@
 use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\AddcompanyController;
+
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
@@ -11,6 +14,8 @@ use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\LetterController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +42,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
 
 
+    Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
+    Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
+    Route::get('/message', [MessageController::class, 'message'])->name('admin.message');
 
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
@@ -53,12 +67,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('finance', 'admin.dashbord.financial');
 
 
-
+    
 });
 
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('carts', CartController::class);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
