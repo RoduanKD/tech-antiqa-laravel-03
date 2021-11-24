@@ -13,7 +13,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="#" class="btn btn-sm btn-primary">Show The
+                                    <a href="{{ route('carts.show', $user->cart) }}" class="btn btn-sm btn-primary">Show
+                                        The
                                         Cart</a>
                                 </div>
                             </div>
@@ -62,7 +63,7 @@
             </div>
         </div>
         <!--Cart SECTION-->
-        {{-- <div class="content">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -77,7 +78,7 @@
                                 <div class="row">
                                     <div class="table-responsive">
                                         <div class="columns is-multiline"></div>
-                                        @foreach ($cart->products as $product)
+                                        @foreach ($user->cart->products as $product)
                                             <div class="column is-4">
                                                 <div class="card">
                                                     <div class="card-content">
@@ -101,6 +102,6 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 @endsection

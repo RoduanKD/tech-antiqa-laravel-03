@@ -8,8 +8,8 @@
                     <!--TITEL SECTION-->
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Carts</h4>
-                            <p class="card-category"> Here you can show Carts</p>
+                            <h4 class="card-title ">{{ $cart->products->count() }} Cards</h4>
+
                         </div>
                         <div class="card is-multiline">
                             @foreach ($cart->products as $product)

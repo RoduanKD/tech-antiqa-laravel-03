@@ -13,7 +13,7 @@ class Area extends Model
     public $translatable = ['name'];
     public function delivery_companies()
     {
-        return $this->belongsToMany(Delivery_company::class);
+        return $this->belongsToMany(DeliveryCompany::class);
     }
 
     public function city()

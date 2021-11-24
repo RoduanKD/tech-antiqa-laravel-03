@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Delivery_company;
+use App\Models\DeliveryCompany;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class Delivery_companyPolicy
+class DeliveryCompanyPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class Delivery_companyPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Delivery_company  $deliveryCompany
+     * @param  \App\Models\DeliveryCompany  $deliveryCompany
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Delivery_company $deliveryCompany)
+    public function view(User $user, DeliveryCompany $deliveryCompany)
     {
         return $user->id == $deliveryCompany->id || $user->can('view delivery');
     }
@@ -48,10 +48,10 @@ class Delivery_companyPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Delivery_company  $deliveryCompany
+     * @param  \App\Models\DeliveryCompany  $deliveryCompany
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Delivery_company $deliveryCompany)
+    public function update(User $user, DeliveryCompany $deliveryCompany)
     {
         return $user->id == $deliveryCompany->id || $user->can('update delivery');
     }
@@ -60,10 +60,10 @@ class Delivery_companyPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Delivery_company  $deliveryCompany
+     * @param  \App\Models\DeliveryCompany  $deliveryCompany
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Delivery_company $deliveryCompany)
+    public function delete(User $user, DeliveryCompany $deliveryCompany)
     {
         return $user->can('delete delivery');
     }
@@ -72,10 +72,10 @@ class Delivery_companyPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Delivery_company  $deliveryCompany
+     * @param  \App\Models\DeliveryCompany  $deliveryCompany
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Delivery_company $deliveryCompany)
+    public function restore(User $user, DeliveryCompany $deliveryCompany)
     {
         //
     }
@@ -84,10 +84,10 @@ class Delivery_companyPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Delivery_company  $deliveryCompany
+     * @param  \App\Models\DeliveryCompany  $deliveryCompany
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Delivery_company $deliveryCompany)
+    public function forceDelete(User $user, DeliveryCompany $deliveryCompany)
     {
         //
     }

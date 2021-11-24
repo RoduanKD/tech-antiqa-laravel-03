@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Delivery_company;
+use App\Models\DeliveryCompany;
 
 class DeliveryController extends Controller
 {
@@ -19,10 +19,9 @@ class DeliveryController extends Controller
         return view('admin.dashbord.delivery');
     }
 }
-/*public function index(Delivery_company $delivery_company)
+/*public function index(DeliveryCompany $delivery_company)
     {
-        $delivery_company = Delivery_company::all();
+        $delivery_company = DeliveryCompany::all();
         return view('admin.dashbord.delivery',['delivery'=>$delivery_company]);
     }
 }*/
-

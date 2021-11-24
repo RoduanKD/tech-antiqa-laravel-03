@@ -23,7 +23,7 @@ class Order extends Model
     }
     public function delivery_company()
     {
-        return $this->belongsTo(Delivery_company::class);
+        return $this->belongsTo(DeliveryCompany::class);
     }
     public function area()
     {

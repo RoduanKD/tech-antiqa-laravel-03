@@ -7,8 +7,8 @@
                     <!--TITEL SECTION-->
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Users</h4>
-                            <p class="card-category"> Here you can manage users</p>
+                            <h4 class="card-title ">Here you can manage Users</h4>
+                            <p class="card-category"> You have {{ $users->count() }} Users</p>
                         </div>
                         <div class="card-body">
                             <!--ADD USERS SECTION-->
@@ -42,7 +42,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('users.show',$user) }}"> {{ $user->name }} </a>
+                                                    <a href="{{ route('users.show', $user) }}"> {{ $user->name }} </a>
                                                 </td>
                                                 <td>
                                                     {{ $user->email }}

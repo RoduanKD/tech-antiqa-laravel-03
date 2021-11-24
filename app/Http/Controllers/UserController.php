@@ -90,9 +90,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         $this->authorize('view', $user);
-        $cart = Cart::all();
+
         //$carts = $produ->carts;
-        return view('users.show', ['user' => $user, 'cart' => $cart ]);
+        return view('users.show', ['user' => $user]);
     }
 
     public function destroy(User $user)
