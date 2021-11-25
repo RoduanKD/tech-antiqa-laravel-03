@@ -9,7 +9,7 @@
                 <!--USER FORME-->
                 <form action="{{ route('categories.store') }}" method="POST" autocomplete="off" class="form-horizontal">
                     @csrf
-                    <!--STATIC SECTION-->
+                    <!--STATIC -->
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title"> Create New Category</h4>
@@ -29,9 +29,9 @@
                                     </div>
                                 </div>
                             @endif
-                            <!--NAME SECTION-->
+                            <!--NAME -->
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                                <label class="col-sm-2 col-form-label">{{ __('Category Name') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <input class=" form-control @error('name')is-danger @enderror" name=" name"
@@ -43,13 +43,35 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--SUBMIT-->
-                            <div class="card-footer ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
-                                <button type="submit" class="btn btn-primary">{{ __('Cancel') }}</button>
+                            <!--PHOTO -->
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Category Iamge') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="from-group">
+                                        <input class="file-input" type="file" name="photo">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                {{ __('Choose a file…') }}
+                                            </span>
+                                        </span>
+                                        </label>
+                                        @error('photo')
+                                            <div class="help is-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            <!--SUBMIT-->
+                        </div>
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Cancel') }}</button>
                         </div>
                     </div>
+                </form>
             </div>
         </div>
     </div>

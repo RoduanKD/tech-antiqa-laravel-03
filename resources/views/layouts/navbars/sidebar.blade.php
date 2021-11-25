@@ -62,30 +62,7 @@
                 </div>
             </li>
 
-            <!--Policies -->
-            <li class="nav-item {{ $activePage == 'terms' || $activePage == 'privacy' ? ' active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#Policies" aria-expanded="true">
-                    <i><img style="width:25px"
-                            src="https://cdn-icons.flaticon.com/png/512/957/premium/957193.png?token=exp=1637188323~hmac=7e793c6c2fbc8b39a9b79246b16a62d9"></i>
-                    <p>{{ __('Policies') }}
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse show" id="Policies">
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'terms' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.terms.edit') }}">
-                                <span class="sidebar-normal">{{ __('Terms') }} </span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'privacy' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.privacy.edit') }}">
-                                <span class="sidebar-normal"> {{ __('Privacy Policy') }} </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+
             <!--Category -->
             <li
                 class="nav-item {{ $activePage == 'category' || $activePage == 'user-management' ? ' active' : '' }}">
@@ -99,8 +76,8 @@
                 <div class="collapse show" id="category">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'category' ? ' active' : '' }}">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-normal">{{ __('New Catogery') }} </span>
+                            <a class="nav-link" href="{{ route('categories.index') }}">
+                                <span class="sidebar-normal">{{ __('Catogeries') }} </span>
                             </a>
                         </li>
                     </ul>
@@ -153,6 +130,30 @@
                         <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('message') }}">
                                 <span class="sidebar-normal">{{ __('Contact with Supervisor') }} </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--Policies -->
+            <li class="nav-item {{ $activePage == 'terms' || $activePage == 'privacy' ? ' active' : '' }}">
+                <a class="nav-link" data-toggle="collapse" href="#Policies" aria-expanded="true">
+                    <i><img style="width:25px"
+                            src="https://cdn-icons.flaticon.com/png/512/957/premium/957193.png?token=exp=1637188323~hmac=7e793c6c2fbc8b39a9b79246b16a62d9"></i>
+                    <p>{{ __('Policies') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse show" id="Policies">
+                    <ul class="nav">
+                        <li class="nav-item{{ $activePage == 'terms' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.terms.edit') }}">
+                                <span class="sidebar-normal">{{ __('Terms') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'privacy' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.privacy.edit') }}">
+                                <span class="sidebar-normal"> {{ __('Privacy Policy') }} </span>
                             </a>
                         </li>
                     </ul>

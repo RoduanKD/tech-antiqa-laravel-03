@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('viewAny', Category::class);
+        $categories = Category::all();
+        return view('categories.index', ['categories' => $categories]);
     }
 
     /**
@@ -25,7 +27,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $this->authorize('create', Category::class);
+
+        return view('categories.create');
     }
 
     /**
@@ -36,13 +40,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Category::class);
         $request->validate([
-            'name' => 'required|string|min:5|max:55'
+            'name' => 'required|string|min:5|max:55',
+            'photo' => 'required'
         ]);
-        $categories = new Category();
-        $categories->name = $request->name;
-        $categories->save();
-        return redirect()->route('admin.products.create');
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+        $category->addMediaFromRequest('photo')->toMediaCollection('media');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -53,7 +60,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $this->authorize('view', $category);
+        return view('categories.show', ['category' => $category]);
     }
 
     /**
@@ -64,7 +72,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $this->authorize('update', $category);
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
@@ -76,7 +85,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->authorize('update', $category);
+        $request->validate([
+            'name' => 'required|string|min:5|max:55',
+            'photo' => 'required'
+        ]);
+        $category->name = $request->name;
+        $category->save();
+        $category->addMediaFromRequest('photo')->toMediaCollection('media');
+        return redirect()->route('categories.show');
     }
 
     /**
@@ -87,6 +104,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $this->authorize('delete', $category);
+        $category->delete();
+        return redirect()->back();
     }
 }
