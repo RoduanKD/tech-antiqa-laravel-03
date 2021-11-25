@@ -16,6 +16,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,8 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
     Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
     Route::get('/message', [MessageController::class, 'message'])->name('admin.message');
-    Route::resource('products', ProductController::class);
-
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
     Route::view('profite', 'admin.Fin.profite')->name('profite');
@@ -67,6 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('rtl-support', 'pages.language')->name('language');
     Route::view('upgrade', 'pages.upgrade')->name('upgrade');
     Route::view('finance', 'admin.dashbord.financial');
+    Route::resource('products', ProductController::class);
+    Route::resource('categories', CategoryController::class);
 });
 
 
@@ -79,7 +80,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
-Route::get('admin/product/index', [AdminController::class, 'index'])->name('admin.index');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('countries', CountryController::class);

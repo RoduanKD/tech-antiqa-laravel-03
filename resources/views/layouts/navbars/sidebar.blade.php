@@ -86,19 +86,20 @@
                     </ul>
                 </div>
             </li>
-            <!--ADD -->
-            <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#add" aria-expanded="true">
+            <!--Category -->
+            <li
+                class="nav-item {{ $activePage == 'category' || $activePage == 'user-management' ? ' active' : '' }}">
+                <a class="nav-link" data-toggle="collapse" href="#category" aria-expanded="true">
                     <i><img style="width:25px"
                             src="https://cdn-icons.flaticon.com/png/512/3032/premium/3032276.png?token=exp=1637188173~hmac=ab284ecf0e8431a3cc954b0b601747dc"></i>
-                    <p>{{ __('Add') }}
+                    <p>{{ __('Category') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="add">
+                <div class="collapse show" id="category">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('profile.edit') }}">
+                        <li class="nav-item{{ $activePage == 'category' ? ' active' : '' }}">
+                            <a class="nav-link" href="#">
                                 <span class="sidebar-normal">{{ __('New Catogery') }} </span>
                             </a>
                         </li>

@@ -69,7 +69,7 @@
                         <!---->
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title ">{{ $user->name }}</h4>
+                                <h4 class="card-title ">Carts</h4>
                                 <p class="card-category">{{ $user->cart->count() }} Products</p>
                             </div>
                             <div class="card-body">
