@@ -41,9 +41,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Category::class);
+
         $request->validate([
             'name' => 'required|string|min:5|max:55',
-            'photo' => 'required'
+            'photo' => 'required|image'
         ]);
         $category = new Category();
         $category->name = $request->name;
