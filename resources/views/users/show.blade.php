@@ -11,14 +11,7 @@
                             <p class="card-category"> Personal Information</p>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 text-right">
-                                    <a href="{{ route('carts.show', $user->cart) }}" class="btn btn-sm btn-primary">Show
-                                        The
-                                        Cart</a>
-                                </div>
-                            </div>
-                            <!--ADD USERS SECTION-->
+                            <!--User's Information-->
                             <div class="row">
                                 <div class="table-responsive">
                                     <table class="table">
@@ -29,6 +22,9 @@
                                                 </th>
                                                 <th>
                                                     Email
+                                                </th>
+                                                <th>
+                                                    Role
                                                 </th>
                                                 <th>
                                                     Phone
@@ -45,6 +41,9 @@
                                                 </td>
                                                 <td>
                                                     {{ $user->email }}
+                                                </td>
+                                                <td>
+                                                    {{ $user->role->name }}
                                                 </td>
                                                 <td>
                                                     {{ $user->phone }}
@@ -67,11 +66,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <!--TITEL SECTION-->
+                        <!---->
                         <div class="card">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title ">{{ $user->name }}</h4>
-                                <p class="card-category"> Carts</p>
+                                <p class="card-category">{{ $user->cart->count() }} Products</p>
                             </div>
                             <div class="card-body">
                                 <!--ADD USERS SECTION-->

@@ -16,8 +16,8 @@ class OrderController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Order::class);
-        $orders= Order::all();
-        return view('orders.index',['orders'=>$orders]);
+        $orders = Order::all();
+        return view('orders.index', ['orders' => $orders]);
     }
 
     /**
@@ -72,7 +72,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $this->authorize('update', Order::class);
+        $request->validate([
+            'status_id' => 'required'
+        ]);
+        return redirect()->back()->with('Status successfully updated.');
     }
 
     /**
@@ -83,6 +87,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $this->authorize('delete', $order);
+        $order->delete();
+        return redirect()->back();
     }
 }

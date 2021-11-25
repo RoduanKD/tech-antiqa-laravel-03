@@ -84,13 +84,12 @@ class UserController extends Controller
         $user->password  = $request->password;
         $user->assignRole($request->role_id);
         $user->save();
-        return redirect()->back()->with('Profile successfully updated.');
+        return redirect()->back()->with('success', 'Profile successfully updated.'); ///////
     }
 
     public function show(User $user)
     {
         $this->authorize('view', $user);
-
         //$carts = $produ->carts;
         return view('users.show', ['user' => $user]);
     }

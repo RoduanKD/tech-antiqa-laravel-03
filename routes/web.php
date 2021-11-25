@@ -16,6 +16,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +37,10 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
 
-    Route::get('/terms/edit', [TermsController::class,'edit'])->name('admin.terms.edit');
-    Route::get('/terms/show', [TermsController::class,'show'])->name('admin.terms.show');
-    Route::get('/privacy/edit', [PrivacyController::class,'edit'])->name('admin.privacy.edit');
-    Route::get('/privacy/show', [PrivacyController::class,'show'])->name('admin.privacy.show');
+    Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
+    Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
+    Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
+    Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
 
 
     Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
     Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
     Route::get('/message', [MessageController::class, 'message'])->name('admin.message');
+    Route::resource('products', ProductController::class);
 
     Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
     Route::view('sales', 'admin.Fin.sales')->name('sales');
@@ -65,9 +67,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('rtl-support', 'pages.language')->name('language');
     Route::view('upgrade', 'pages.upgrade')->name('upgrade');
     Route::view('finance', 'admin.dashbord.financial');
-
-
-    
 });
 
 
@@ -86,9 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('countries', CountryController::class);
     Route::resource('cities', CityController::class);
     Route::resource('areas', AreaController::class);
-
 });
 
-Route::get('/message', [MessageController::class,'message'])->name('message');
+Route::get('/message', [MessageController::class, 'message'])->name('message');
 Route::post('/message', [LetterController::class, 'store']);
-

@@ -62,16 +62,16 @@
                 </div>
             </li>
 
-            <!--EDIT -->
+            <!--Policies -->
             <li class="nav-item {{ $activePage == 'terms' || $activePage == 'privacy' ? ' active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#edit" aria-expanded="true">
+                <a class="nav-link" data-toggle="collapse" href="#Policies" aria-expanded="true">
                     <i><img style="width:25px"
                             src="https://cdn-icons.flaticon.com/png/512/957/premium/957193.png?token=exp=1637188323~hmac=7e793c6c2fbc8b39a9b79246b16a62d9"></i>
-                    <p>{{ __('Edit') }}
+                    <p>{{ __('Policies') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="edit">
+                <div class="collapse show" id="Policies">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'terms' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.terms.edit') }}">

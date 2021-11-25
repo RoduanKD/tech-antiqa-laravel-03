@@ -17,7 +17,7 @@
                                     <thead class=" text-primary">
                                         <tr>
                                             <th>
-                                                Oner
+                                                Owner
                                             </th>
                                             <th>
                                                 Area
@@ -27,6 +27,9 @@
                                             </th>
                                             <th>
                                                 Delivery Company
+                                            </th>
+                                            <th>
+                                                Status
                                             </th>
                                             <th class="text-right">
                                                 Actions
@@ -41,24 +44,29 @@
                                                     {{ $order->owner->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->area->name_en }}
+                                                    {{ $order->area->name }}
                                                 </td>
                                                 <td>
                                                     {{ $order->accepted_at->diffForHumans() }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->delivery_company }}
+                                                    {{ $order->delivery_company->name_en }}
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('orders.update', $order) }}"></form>
+                                                    <select name="status_id" value="{{ old('status_id') }}">
+
+                                                        <option>Delivered</option>
+                                                        <option>Not delivered</option>
+                                                        <option>pending</option>
+
+                                                    </select>
                                                 </td>
                                                 <!-- EDIT -->
                                                 <td class="td-actions text-right">
                                                     <form action="{{ route('orders.destroy', $order) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        <a rel="tooltip" class="btn btn-success btn-link" href="#"
-                                                            data-original-title="" title="">
-                                                            <i class="material-icons">edit</i>
-                                                            <div class="ripple-container"></div>
-                                                        </a>
                                                         <button rel="tooltip" class="btn btn-danger btn-round"
                                                             type="submit">
                                                             <i class="material-icons">delete</i>

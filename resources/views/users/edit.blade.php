@@ -6,6 +6,11 @@
         <div class="section">
             <div class="container">
                 <ul>
+                    @if (Session::get('error'))
+                        <li>{{ Session::get('error') }}</li>
+                    @endif
+                </ul>
+                <ul>
                     @foreach ($errors->all() as $error) @endforeach
                 </ul>
                 <!--USER FORME-->
@@ -66,9 +71,10 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="select is-rounded  @error('role_id')is-danger @enderror">
-                                            <select name="role_id" value="{{ old('role_id', $role->role_id) }}">
-                                                <option> Supervisor </option>
-                                                <option> Delivery Company</option>
+                                            <select name="role_id" value="{{ old('role_id') }}">
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                @endforeach
                                             </select>
                                             <div>
                                                 @error('role_id')

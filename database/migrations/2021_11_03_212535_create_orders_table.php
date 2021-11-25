@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->string('area_id');
+            $table->foreignId('area_id');
             $table->foreignId('delivery_company_id');
             $table->timestamp('accepted_at');
             $table->timestamps();

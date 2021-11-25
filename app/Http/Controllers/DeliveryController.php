@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryCompany;
+use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
@@ -17,6 +18,12 @@ class DeliveryController extends Controller
     {
 
         return view('admin.dashbord.delivery');
+    }
+    public function store(Request $request)
+    {
+        $delivery = DeliveryCompany::create([
+            'name' => ['en' => $request->name]
+        ]);
     }
 }
 /*public function index(DeliveryCompany $delivery_company)

@@ -34,7 +34,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Full Name') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class=" form-control @error('birthdate')is-danger @enderror" name=" name"
+                                        <input class=" form-control @error('name')is-danger @enderror" name=" name"
                                             id="input-name" type="text" placeholder="{{ __(' Full Name') }}"
                                             aria-required="true" />
                                         @if ($errors->has('name'))
