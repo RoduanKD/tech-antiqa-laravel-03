@@ -69,7 +69,7 @@ class ProductController extends Controller
         $product->save();
         $product->addMediaFromRequest('photo')->toMediaCollection('media');
         $product->addMediaFromRequest('vedio')->toMediaCollection('media');
-        return redirect()->route('products.index');
+        return redirect()->route('/');
     }
 
     /**
