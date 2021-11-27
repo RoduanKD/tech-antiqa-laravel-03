@@ -7,8 +7,8 @@
                     @foreach ($errors->all() as $error) @endforeach
                 </ul>
                 <!--USER FORME-->
-                <form action="{{ route('categories.update', $category) }}" method="POST" autocomplete="off"
-                    class="form-horizontal">
+                <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data"
+                    autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('PUT')
                     <!--STATIC -->

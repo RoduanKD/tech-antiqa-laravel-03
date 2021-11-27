@@ -16,8 +16,12 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-
-        return view('admin.dashbord.delivery');
+        $deliveries = DeliveryCompany::all();
+        return view('admin.dashbord.delivery', ['deliveries' => $deliveries]);
+    }
+    public function create()
+    {
+        return view('');
     }
     public function store(Request $request)
     {

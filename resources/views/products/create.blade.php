@@ -7,10 +7,9 @@
                     @foreach ($errors->all() as $error) @endforeach
                 </ul>
                 <!--USER FORME-->
-                <form action="{{ route('products.update', $product) }}" method="POST" autocomplete="off"
-                    class="form-horizontal">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"
+                    autocomplete="off" class="form-horizontal">
                     @csrf
-                    @method('PUT')
                     <!--STATIC SECTION-->
                     <div class="card ">
                         <div class="card-header card-header-primary">
@@ -37,8 +36,8 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <input class=" form-control @error('name')is-danger @enderror" name=" name"
-                                            value="{{ old('name', $product->name) }}" id="input-name" type="text"
-                                            placeholder="{{ __('Name') }}" aria-required="true" />
+                                            id="input-name" type="text" placeholder="{{ __('Name') }}"
+                                            aria-required="true" />
                                         @error('name')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
@@ -51,9 +50,51 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <input class=" form-control @error('price')is-danger @enderror" name=" price"
-                                            value="{{ old('price', $product->price) }}" id="input-name" type="numeric"
-                                            placeholder="{{ __('100$') }}" aria-required="true" />
+                                            id="input-name" type="numeric" placeholder="{{ __('100$') }}"
+                                            aria-required="true" />
                                         @error('price')
+                                            <div class="help is-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <!--PHOTO -->
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Product Iamges') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="from-group">
+                                        <input class="file-input" type="file" name="photo">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                {{ __('Choose a file…') }}
+                                            </span>
+                                        </span>
+                                        </label>
+                                        @error('photo')
+                                            <div class="help is-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <!--VEDIO -->
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Product Vedio') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="from-group">
+                                        <input class="file-input" type="file" name="vedio">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                {{ __('Choose a file…') }}
+                                            </span>
+                                        </span>
+                                        </label>
+                                        @error('vedio')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -65,8 +106,8 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <input class=" form-control @error('quantity')is-danger @enderror" name=" quantity"
-                                            value="{{ old('quantity', $product->quantity) }}" id="input-name"
-                                            type="numeric" placeholder="{{ __('4 pices') }}" aria-required="true" />
+                                            id="input-name" type="number" placeholder="{{ __('4 pices') }}"
+                                            aria-required="true" />
                                         @error('quantity')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
@@ -75,17 +116,19 @@
                             </div>
                             <!--language-->
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('language') }}</label>
+                                <label class="col-sm-2 col-form-label">Language</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        {{-- <select name="category_id">
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    {{ $category->id == old('category_id') ? 'selected' : '' }}>
-                                                    {{ $category->name }}
-                                                </option>
-                                            @endforeach
-                                        </select> --}}
+                                        <div class="control">
+                                            <label class="radio">
+                                                <input type="radio" name="language" value="ar">
+                                                Arabic
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" name="language" value="en">
+                                                English
+                                            </label>
+                                        </div>
                                         @error('language')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
@@ -98,8 +141,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="select @error('category_id')is-danger @enderror">
-                                            <select name="category_id"
-                                                value="{{ old('category_id', $product->category_id) }}">
+                                            <select name="category_id">
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ $category->id == old('category_id') ? 'selected' : '' }}>
@@ -114,14 +156,13 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <!--Specification-->
-                            <div class="row">
+                            <!--Specification-->
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Specification</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="select @error('specification_id')is-danger @enderror">
-                                            <select name="specification_id"
-                                                value="{{ old('specification', $product->specification) }}">
+                                            <select name="specification_id">
                                                 @foreach ($categories->specifications as $specification)
                                                     <option value="{{ $specification->id }}"
                                                         {{ $specification->id == old('specification_id') ? 'selected' : '' }}>
@@ -143,13 +184,11 @@
                                     <div class="form-group">
                                         <div class="control">
                                             <label class="radio">
-                                                <input type="radio" name="is_used" value="new"
-                                                    value="{{ old('is_used', $product->is_used) }}">
+                                                <input type="radio" name="is_used" value="new">
                                                 New
                                             </label>
                                             <label class="radio">
-                                                <input type="radio" name="is_used" value="used"
-                                                    value="{{ old('is_used', $product->is_used) }}">
+                                                <input type="radio" name="is_used" value="used">
                                                 Used
                                             </label>
                                         </div>
@@ -166,13 +205,11 @@
                                     <div class="form-group">
                                         <div class="control">
                                             <label class="radio">
-                                                <input type="radio" name="auction" value="yes"
-                                                    value="{{ old('auction', $product->auction) }}">
+                                                <input type="radio" name="auction" value="yes">
                                                 Yes
                                             </label>
                                             <label class="radio">
-                                                <input type="radio" name="auction" value="no"
-                                                    value="{{ old('auction', $product->auction) }}">
+                                                <input type="radio" name="auction" value="no">
                                                 No
                                             </label>
                                         </div>

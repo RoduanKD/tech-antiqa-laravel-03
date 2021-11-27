@@ -17,8 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-        return view('admin.products.index');
+        $this->authorize('viewAny', Product::class);
+        $products = Product::all();
+        return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -30,7 +31,7 @@ class ProductController extends Controller
     {
         $this->authorize('create', Product::class);
         $categories = Category::all();
-        return view('admin.products.create', ['categories' => $categories]);
+        return view('products.create', ['categories' => $categories]);
     }
 
     /**
@@ -44,27 +45,31 @@ class ProductController extends Controller
 
         $this->authorize('create', Product::class);
         $request->validate([
-            'name'      => 'required|string|min:10|max:55',
-            'price'     => 'required|numeric',
-            'quantity'     => 'required|numeric',
-            'language' => 'required',
-            'category_id'  => 'required|numeric|exists:categories,id',
+            'name'               => 'required|string|min:5|max:55',
+            'price'              => 'required|numeric',
+            'quantity'           => 'required|numeric:min:0,max:10',
+            'language'           => 'required',
+            'category_id'        => 'required|numeric|exists:categories,id',
             'specification_id'   => 'required|numeric|exists:specifications,id',
-            'is_used' => 'required',
-            'auction' => 'required',
+            'is_used'            => 'required',
+            'auction'            => 'required',
+            'photo'              => 'required|image',
+            'vedio'              => 'required|vedio'
 
         ]);
         $product = new Product();
-        $product->name      = $request->name;
-        $product->price     = $request->price;
-        $product->quantity     = $request->quantity;
-        $product->language = $request->language;
-        $product->category_id  = $request->category_id;
+        $product->name             = $request->name;
+        $product->price            = $request->price;
+        $product->quantity         = $request->quantity;
+        $product->language         = $request->language;
+        $product->category_id      = $request->category_id;
         $product->specification_id = $request->specification_id;
-        $product->is_used = $request->is_used;
-        $product->auction = $request->auction;
+        $product->is_used          = $request->is_used;
+        $product->auction          = $request->auction;
         $product->save();
-        return redirect()->route('products.index', $product);
+        $product->addMediaFromRequest('photo')->toMediaCollection('media');
+        $product->addMediaFromRequest('vedio')->toMediaCollection('media');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -75,8 +80,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $this->authorize('view', Product::class);
-        return view('admin.products.show', ['product' => $product]);
+        $this->authorize('view', $product);
+        return view('products.show', ['product' => $product]);
     }
 
     /**
@@ -87,8 +92,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize('update', Product::class);
-        return view('admin.products.show');
+        $this->authorize('update', $product);
+        return view('products.show', ['product' => $product]);
     }
 
     /**
@@ -100,27 +105,31 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $this->authorize('update', Product::class);
+        $this->authorize('update', $product);
         $request->validate([
-            'name'      => 'required|string|min:10|max:55',
-            'price'     => 'required|numeric',
-            'quantity'     => 'required|numeric',
-            'language' => 'required',
-            'category_id'  => 'required|numeric|exists:categories,id',
+            'name'               => 'required|string|min:5|max:55',
+            'price'              => 'required|numeric',
+            'quantity'           => 'required|numeric:min:0,max:10',
+            'language'           => 'required',
+            'category_id'        => 'required|numeric|exists:categories,id',
             'specification_id'   => 'required|numeric|exists:specifications,id',
-            'is_used' => 'required',
-            'auction' => 'required',
+            'is_used'            => 'required',
+            'auction'            => 'required',
+            'photo'              => 'required|image',
+            'vedio'              => 'required|vedio'
 
         ]);
-        $product->name      = $request->name;
-        $product->price     = $request->price;
-        $product->quantity     = $request->quantity;
-        $product->language = $request->language;
-        $product->category_id  = $request->category_id;
+        $product->name             = $request->name;
+        $product->price            = $request->price;
+        $product->quantity         = $request->quantity;
+        $product->language         = $request->language;
+        $product->category_id      = $request->category_id;
         $product->specification_id = $request->specification_id;
-        $product->is_used = $request->is_used;
-        $product->auction = $request->auction;
+        $product->is_used          = $request->is_used;
+        $product->auction          = $request->auction;
         $product->save();
+        $product->addMediaFromRequest('photo')->toMediaCollection('media');
+        $product->addMediaFromRequest('vedio')->toMediaCollection('media');
         return redirect()->route('products.show', $product);
     }
 
@@ -132,7 +141,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $this->authorize('delete', Product::class);
+        $this->authorize('delete', $product);
         $product->delete();
         return redirect()->back();
     }
