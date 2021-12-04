@@ -25,7 +25,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('cities.create');
     }
 
     /**
@@ -36,9 +36,18 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = City::create([
-            'name' => ['en' => $request->name_en,  'ar' => $request->name_ar,],
+        // $city = City::create([
+        //     'name' => ['en' => $request->name_en,  'ar' => $request->name_ar,],
+        // ]);
+        $request->validate([
+            'name_ar' => 'required|string|min:3|max:55',
+            'name_en' => 'required|string|min:3|max:55'
         ]);
+        $city = new City();
+        $city->name_ar = $request->name_ar;
+        $city->name_en = $request->name_en;
+        $city->save();
+        return redirect()->route('places');
     }
 
     /**
@@ -49,10 +58,7 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-
-        $areas = $city-> areas;
-
-        return view('cities.show', ['$areas'=> $areas]);
+        return view('cities.show', ['$city' => $city]);
     }
 
     /**
@@ -63,7 +69,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        return view('cities.edit', ['city' => $city]);
     }
 
     /**
@@ -75,7 +81,12 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:3|max:55'
+        ]);
+        $city->name = $request->name;
+        $city->save();
+        return redirect()->route('places');
     }
 
     /**

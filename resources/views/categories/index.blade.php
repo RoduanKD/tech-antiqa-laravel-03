@@ -11,6 +11,13 @@
                             <p class="card-category"> You have {{ $categories->count() }} categories</p>
                         </div>
                         <div class="card-body">
+                            {{-- ADD CATEGORY --}}
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary">Add
+                                        category</a>
+                                </div>
+                            </div>
                             <!--STATIC INFO-->
                             <div class="table-responsive">
                                 <table class="table">

@@ -1,58 +1,60 @@
-@extends('layouts.app', ['activePage' => 'countries', 'titlePage' => 'Place'])
-
+@extends('layouts.app', ['activePage' => 'category', 'titlePage' => 'category'])
 @section('content')
     <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-danger">
-                            <h4 class="card-title ">Place</h4>
-                            <p class="card-category"> You Can Change the all places from here</p>
+        <div class="section">
+            <div class="container">
+                <ul>
+                    @foreach ($errors->all() as $error) @endforeach
+                </ul>
+                <!--USER FORME-->
+                <form action="{{ route('countries.update', $country) }}" method="POST" enctype="multipart/form-data"
+                    autocomplete="off" class="form-horizontal">
+                    @csrf
+                    @method('PUT')
+                    <!--STATIC -->
+                    <div class="card ">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title"> Edit Country</h4>
+                            <p class="card-category">{{ __('Country') }}</p>
                         </div>
-
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Country
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Syria</a>
+                        <div class="card-body ">
+                            @if (session('status'))
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-success">
+                                            <button type="button" class="close" data-dismiss="alert"
+                                                aria-label="Close">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                            <span>{{ session('status') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            <!--NAME -->
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Country') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <input class=" form-control @error('name')is-danger @enderror" name=" name"
+                                            value="{{ old('name', $country->name) }}" id="input-name" type="text"
+                                            placeholder="{{ __('Name') }}" aria-required="true" />
+                                        @error('name')
+                                            <div class="help is-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            <!--SUBMIT-->
                         </div>
-                       <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                City
-                               </button>
-                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                 <a class="dropdown-item" href="#">Damascus</a>
-                                 <a class="dropdown-item" href="#">Aleppo</a>
-                                 <a class="dropdown-item" href="#">Hama</a>
-                               </div>
-                       </div>
-                       <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Area
-                           </button>
-                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                             <a class="dropdown-item" href="#">Douma</a>
-                             <a class="dropdown-item" href="#">Al-Tal</a>
-
-                           </div>
-                   </div>
-
-
-
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Cancel') }}</button>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="field is-grouped">
-                <div class="control">
-                    <button type="button-align:center" class="btn btn-success">Change</button>
-                    <button type="button" class="btn btn-danger">Cancel</button>
-                </div>
-
+                </form>
             </div>
         </div>
     </div>
 
- @endsection
+@endsection
