@@ -43,7 +43,7 @@
                                                     {{ $user->email }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->role->name }}
+                                                    {{-- {{ $user->role->name }} --}}
                                                 </td>
                                                 <td>
                                                     {{ $user->phone }}

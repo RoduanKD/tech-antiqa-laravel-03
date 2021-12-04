@@ -25,7 +25,7 @@
                     <ul class="nav">
                         @can('create category')
                             <li class="nav-item{{ $activePage == 'financial-statement' ? ' active' : '' }}">
-                                <a class="nav-link" href="{{ route('admin.financial') }}">
+                                <a class="nav-link" href="{{ route('financials.index') }}">
                                     <span class="sidebar-normal">{{ __('Financial Statement') }} </span>
                                 </a>
                             </li>
@@ -96,7 +96,7 @@
                 <div class="collapse show" id="place">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'country' ? ' active' : '' }}">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('places') }}">
                                 <span class="sidebar-normal"> {{ __('Country') }} </span>
                             </a>
                     </ul>

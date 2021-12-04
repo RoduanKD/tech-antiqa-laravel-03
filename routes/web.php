@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\AddcompanyController;
 
-
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
@@ -54,8 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');
     Route::get('/privacy/show', [PrivacyController::class, 'show'])->name('admin.privacy.show');
     Route::get('/message', [MessageController::class, 'message'])->name('admin.message');
-    Route::get('/financial', [FinancialController::class, 'index'])->name('admin.financial');
-    Route::view('sales', 'admin.Fin.sales')->name('sales');
+    Route::resource('financials', FinancialController::class);
     Route::view('profite', 'admin.Fin.profite')->name('profite');
     Route::view('activearea', 'admin.Fin.activearea')->name('activearea');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -90,3 +88,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/message', [MessageController::class, 'message'])->name('message');
 Route::post('/message', [LetterController::class, 'store']);
+Route::get('/places', [PagesController::class, 'places'])->name('places');

@@ -25,7 +25,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('countries.create');
     }
 
     /**
@@ -36,9 +36,16 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $country = Country::create([
-            'name' => ['en' => $request->name_en,  'ar' => $request->name_ar,],
+        $request->validate([
+            'name' => 'required|string|min:3|max:55',
         ]);
+        $country = new Country();
+        $country->name = $request->name;
+        $country->save();
+        return redirect()->route('places');
+        // $country = Country::create([
+        //     'name' => ['en' => $request->name_en,  'ar' => $request->name_ar,],
+        // ]);
     }
 
     /**
@@ -50,8 +57,6 @@ class CountryController extends Controller
     public function show(Country $country)
     {
         $cities = $country->cities;
-
-
         return view('countries.show', ['cities' => $cities]);
     }
 
@@ -63,7 +68,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        //
+        return view('countries.edit', ['country' => $country]);
     }
 
     /**
@@ -75,7 +80,12 @@ class CountryController extends Controller
      */
     public function update(Request $request, Country $country)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:3|max:55',
+        ]);
+        $country->name = $request->name;
+        $country->save();
+        return redirect()->route('countries.show');
     }
 
     /**
