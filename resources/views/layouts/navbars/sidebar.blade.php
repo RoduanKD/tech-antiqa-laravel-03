@@ -31,7 +31,7 @@
                             </li>
                         @endcan
                         <li class="nav-item{{ $activePage == 'delivery-companies' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.delivery') }}">
+                            <a class="nav-link" href="{{ route('deliveries.create') }}">
                                 <span class="sidebar-normal"> {{ __('Delivery Companies') }} </span>
                             </a>
                         </li>
@@ -84,8 +84,7 @@
                 </div>
             </li>
             <!--PLACE -->
-            <li
-                class="nav-item {{ $activePage == 'country' || $activePage == 'city' || $activePage == 'area' ? ' active' : '' }}">
+            <li class="nav-item {{ $activePage == 'places' }}">
                 <a class="nav-link" data-toggle="collapse" href="#place" aria-expanded="true">
                     <i><img style="width:25px"
                             src="https://cdn-icons.flaticon.com/png/512/819/premium/819814.png?token=exp=1637187862~hmac=5d3b3f5957074d1361dcbbe743e2c13e"></i>
@@ -95,23 +94,9 @@
                 </a>
                 <div class="collapse show" id="place">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'country' ? ' active' : '' }}">
+                        <li class="nav-item{{ $activePage == 'place' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('places') }}">
-                                <span class="sidebar-normal"> {{ __('Country') }} </span>
-                            </a>
-                    </ul>
-
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'city' ? ' active' : '' }}">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-normal"> {{ __('City') }} </span>
-                            </a>
-                    </ul>
-
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'area' ? ' active' : '' }}">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-normal"> {{ __('Area') }} </span>
+                                <span class="sidebar-normal"> {{ __('Places') }} </span>
                             </a>
                     </ul>
 

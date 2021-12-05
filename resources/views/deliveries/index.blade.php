@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'delivery-company', 'titlePage' => ''])
+@extends('layouts.app', ['activePage' => 'delivery-company', 'titlePage' => 'Delivery Companies'])
 
 @section('content')
     <div class="content">
@@ -20,7 +20,7 @@
                                             <tr>
                                                 <th class="text-center">#</th>
                                                 <th>Name</th>
-                                                <th>Regions</th>
+                                                <th>Contact Number</th>
                                                 <th>Since</th>
                                                 <th class="text-right">Actions</th>
                                             </tr>
@@ -30,7 +30,7 @@
                                                 <tr>
                                                     <td class="text-center">1</td>
                                                     <td>{{ $delivery->name }}</td>
-                                                    <td>{{ $delivery->area->name }}</td>
+                                                    <td>{{ $delivery->phon_number }}</td>
                                                     <td>{{ $delivery->created_at }}</td>
                                                     <td class="td-actions text-right">
                                                         <button type="button" rel="tooltip" class="btn btn-info">

@@ -3,10 +3,8 @@
 use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
-use App\Http\Controllers\AddcompanyController;
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\FinancialController;
@@ -16,8 +14,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DeliveryCompanyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\PagesController;
+use App\Models\DeliveryCompany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +36,8 @@ Route::get('/', [PagesController::class, 'welcome']);
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/delivery', [DeliveryController::class, 'index'])->name('admin.delivery');
-
+    
+    Route::resource('deliveries', DeliveryCompanyController::class);
     Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
     Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
     Route::get('/privacy/edit', [PrivacyController::class, 'edit'])->name('admin.privacy.edit');

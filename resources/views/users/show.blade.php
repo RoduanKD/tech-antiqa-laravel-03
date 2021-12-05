@@ -73,7 +73,7 @@
                                 <p class="card-category">{{ $user->cart->count() }} Products</p>
                             </div>
                             <div class="card-body">
-                                <!--ADD USERS SECTION-->
+                                <!--Cart-->
                                 <div class="row">
                                     <div class="table-responsive">
                                         <div class="columns is-multiline"></div>
