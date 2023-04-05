@@ -10,7 +10,16 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory , InteractsWithMedia;
+    use HasFactory, InteractsWithMedia;
+    protected $fillable = [
+        'name',
+        'user_id',
+        'category_id',
+        'price',
+        'language',
+        'is_used',
+        'quantity'
+    ];
 
     public function category()
     {

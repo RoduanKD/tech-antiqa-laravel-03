@@ -4,11 +4,12 @@
         <div class="section">
             <div class="container">
                 <ul>
-                    @foreach ($errors->all() as $error) @endforeach
+                    @foreach ($errors->all() as $error)
+                    @endforeach
                 </ul>
                 <!--USER FORME-->
-                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"
-                    autocomplete="off" class="form-horizontal">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off"
+                    class="form-horizontal">
                     @csrf
                     <!--STATIC SECTION-->
                     <div class="card ">
@@ -21,8 +22,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="alert alert-success">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <i class="material-icons">close</i>
                                             </button>
                                             <span>{{ session('status') }}</span>
@@ -49,9 +49,8 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Price') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class=" form-control @error('price')is-danger @enderror" name=" price"
-                                            id="input-name" type="numeric" placeholder="{{ __('100$') }}"
-                                            aria-required="true" />
+                                        <input class=" form-control @error('price')is-danger @enderror" name="price"
+                                            type="numeric" placeholder="{{ __('100$') }}" aria-required="true" />
                                         @error('price')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
@@ -63,7 +62,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Product Iamges') }}</label>
                                 <div class="col-sm-7">
                                     <div class="from-group">
-                                        <input class="file-input" type="file" name="photo">
+                                        <input class="file-input" type="file" name="image">
                                         <span class="file-cta">
                                             <span class="file-icon">
                                                 <i class="fas fa-upload"></i>
@@ -73,14 +72,14 @@
                                             </span>
                                         </span>
                                         </label>
-                                        @error('photo')
+                                        @error('image')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                             <!--VEDIO -->
-                            <div class="row">
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Product Vedio') }}</label>
                                 <div class="col-sm-7">
                                     <div class="from-group">
@@ -99,15 +98,14 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!--quantity-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('quantity') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class=" form-control @error('quantity')is-danger @enderror" name=" quantity"
-                                            id="input-name" type="number" placeholder="{{ __('4 pices') }}"
-                                            aria-required="true" />
+                                        <input class=" form-control @error('quantity')is-danger @enderror" name="quantity"
+                                            type="number" placeholder="{{ __('4 pices') }}" aria-required="true" />
                                         @error('quantity')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
@@ -184,11 +182,11 @@
                                     <div class="form-group">
                                         <div class="control">
                                             <label class="radio">
-                                                <input type="radio" name="is_used" value="new">
+                                                <input type="radio" name="is_used" value="0">
                                                 New
                                             </label>
                                             <label class="radio">
-                                                <input type="radio" name="is_used" value="used">
+                                                <input type="radio" name="is_used" value="1">
                                                 Used
                                             </label>
                                         </div>

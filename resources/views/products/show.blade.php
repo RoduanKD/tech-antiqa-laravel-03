@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'product', 'titlePage' => 'Products'])
-
+{{-- TODO: update the show of category --}}
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -15,9 +15,15 @@
                             <div class="card-body">
                                 <div class="container">
                                     <div class="block">
-                                        <div class="image">
-                                            <img src=" {{ $product->media->photo }}" alt="{{ $product->titel }}">
-                                        </div>
+                                        @if ($product->getMedia('images')->count() > 0)
+                                            <div>
+                                                <img src="{{ $product->getFirstMedia('images')->getUrl() }}" alt=""
+                                                    style="max-width:500px;">
+                                            </div>
+                                        @endif
+                                        {{-- <div class="image">
+                                            <img src=" {{ $product->getFirstMedia('media') }}" alt="{{ $product->titel }}">
+                                        </div> --}}
                                     </div>
                                     <div class="block">
                                         <div class="content is-medium">
@@ -37,7 +43,7 @@
                                                 </span>
                                             </a>
                                         </p>
-                                        <form action="{{ route('products.destory', $product) }}" method="POST">
+                                        <form action="{{ route('products.destroy', $product) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <p class="control">

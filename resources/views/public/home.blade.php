@@ -90,7 +90,16 @@
                                     @foreach ($products as $product)
                                         <div class="product">
                                             <div class="product-img">
-                                                <img src="./img/product01.png" alt="">
+                                                @if ($product->getFirstMediaUrl('images'))
+                                                    <img src="{{ $product->getFirstMediaUrl('images', 'thumb') }}"
+                                                        alt="{{ $product->name }}" class="card-img-top">
+                                                @else
+                                                    <img class="card-img-top"
+                                                        src="https://via.placeholder.com/286x180.png?text=No+Image+Available"
+                                                        alt="Card image cap">
+                                                @endif
+                                                {{-- <img src="{{ $product->getFirstMediaUrl('media', 'thumb') }}"
+                                                    alt=""> --}}
                                                 <div class="product-label">
                                                     <span class="sale">-30%</span>
                                                     <span class="new">NEW</span>
@@ -266,8 +275,8 @@
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del
-                                                    class="product-old-price">$990.00</del></h4>
+                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del>
+                                            </h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -302,8 +311,8 @@
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del
-                                                    class="product-old-price">$990.00</del></h4>
+                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del>
+                                            </h4>
                                             <div class="product-rating">
                                             </div>
                                             <div class="product-btns">
@@ -330,8 +339,8 @@
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del
-                                                    class="product-old-price">$990.00</del></h4>
+                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del>
+                                            </h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -363,8 +372,8 @@
                                         <div class="product-body">
                                             <p class="product-category">Category</p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price">$980.00 <del
-                                                    class="product-old-price">$990.00</del></h4>
+                                            <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del>
+                                            </h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
