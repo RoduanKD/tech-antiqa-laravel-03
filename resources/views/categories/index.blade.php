@@ -4,6 +4,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        @endforeach
+                    </ul>
                     <!--TITEL SECTION-->
                     <div class="card">
                         <div class="card-header card-header-primary">
@@ -24,6 +28,9 @@
                                     <thead class=" text-primary">
                                         <tr>
                                             <th>
+                                                Category Image
+                                            </th>
+                                            <th>
                                                 Category Name
                                             </th>
                                             <th>
@@ -42,12 +49,21 @@
                                         <tbody>
                                             <tr>
                                                 <td>
+                                                    @if ($category->getFirstMedia('images'))
+                                                        <img src="{{ $category->getFirstMediaUrl('images', 'thumb') }}"
+                                                            alt="{{ $category->name }}" class="card-img-top">
+                                                    @else
+                                                        <img class="card-img-top"
+                                                            src="https://via.placeholder.com/286x180.png?text=No+Image+Available"
+                                                            alt="Card image cap">
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <a href="{{ route('categories.show', $category) }}">
                                                         {{ $category->name }} </a>
                                                 </td>
                                                 <td>
-                                                    {{-- TODO: count of products --}}
-                                                    {{ $category->count() }}
+                                                    {{ $category->products->count() }}
                                                 </td>
                                                 <td>
                                                     {{ $category->created_at }}

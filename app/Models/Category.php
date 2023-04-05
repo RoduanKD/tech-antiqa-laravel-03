@@ -10,6 +10,10 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Category extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+    protected $fillable = [
+        'name'
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class);
@@ -22,7 +26,7 @@ class Category extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this
-            ->addMediaCollection('iamge')
+            ->addMediaCollection('image')
             ->singleFile();
     }
 }

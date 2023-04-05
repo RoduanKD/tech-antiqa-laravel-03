@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -38,18 +39,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
         $this->authorize('create', Category::class);
-
-        $request->validate([
-            'name' => 'required|string|min:5|max:55',
-            'photo' => 'required|image'
-        ]);
-        $category = new Category();
-        $category->name = $request->name;
-        $category->save();
-        $category->addMediaFromRequest('photo')->toMediaCollection('media');
+        $data = $request->validated();
+        $category =  Category::create($data);
+        $category->addMediaFromRequest('image')->toMediaCollection('images');
         return redirect()->route('categories.index');
     }
 

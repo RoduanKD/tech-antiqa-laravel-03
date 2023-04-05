@@ -4,11 +4,13 @@
         <div class="section">
             <div class="container">
                 <ul>
-                    @foreach ($errors->all() as $error) @endforeach
+                    @if (Session::get('error'))
+                        <li>{{ Session::get('error') }}</li>
+                    @endif
                 </ul>
                 <!--USER FORME-->
-                <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data"
-                    autocomplete="off" class="form-horizontal">
+                <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off"
+                    class="form-horizontal">
                     @csrf
                     <!--STATIC -->
                     <div class="card ">
@@ -21,8 +23,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="alert alert-success">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <i class="material-icons">close</i>
                                             </button>
                                             <span>{{ session('status') }}</span>
@@ -49,7 +50,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Category Iamge') }}</label>
                                 <div class="col-sm-7">
                                     <div class="from-group">
-                                        <input class="file-input" type="file" name="photo">
+                                        <input class="file-input" type="file" name="image">
                                         <span class="file-cta">
                                             <span class="file-icon">
                                                 <i class="fas fa-upload"></i>
@@ -59,7 +60,7 @@
                                             </span>
                                         </span>
                                         </label>
-                                        @error('photo')
+                                        @error('image')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -76,5 +77,4 @@
             </div>
         </div>
     </div>
-
 @endsection

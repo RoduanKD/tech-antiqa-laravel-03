@@ -8,6 +8,7 @@
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">{{ $category->name }}</h4>
+                            {{ $category->getFirstMediaUrl('image') }}
                         </div>
                         <div class="card-body">
                             <!--categories' Product-->
@@ -20,6 +21,7 @@
                                             <div class="media-content">
                                                 <p class="title is-4"> "{{ $product->name }}" </p>
                                                 <p class="title is-4"> "{{ $product->user->name }}" </p>
+                                                {{-- <p class="title is-4"> "{{ $product->media->image }}" </p> --}}
                                                 <p class="subtitle is-6"> "{{ $product->price }}"</p>
                                             </div>
                                         </div>
