@@ -11,7 +11,7 @@
                     @endif
                 </ul>
                 <ul>
-                    @foreach ($errors->all() as $error) @endforeach
+                    @foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach
                 </ul>
                 <!--USER FORME-->
                 <form action="{{ route('users.update', $user) }}" method="POST" autocomplete="off" class="form-horizontal">

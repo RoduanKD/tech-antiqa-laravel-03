@@ -10,6 +10,7 @@
                             <h4 class="card-title ">{{ $user->name }}</h4>
                             <p class="card-category"> Personal Information</p>
                         </div>
+
                         <div class="card-body">
                             <!--User's Information-->
                             <div class="row">
@@ -32,6 +33,22 @@
                                                 <th>
                                                     Birthdate
                                                 </th>
+                                                <th class="td-actions text-right">
+                                                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <a rel="tooltip" class="btn btn-success btn-link"
+                                                            href="{{ route('users.edit', $user) }}" data-original-title=""
+                                                            title="">
+                                                            <i class="material-icons">edit</i>
+                                                            <div class="ripple-container"></div>
+                                                        </a>
+                                                        <button rel="tooltip" class="btn btn-danger btn-round"
+                                                            type="submit">
+                                                            <i class="material-icons">delete</i>
+                                                        </button>
+                                                    </form>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -51,6 +68,7 @@
                                                 <td>
                                                     {{ $user->birthdate }}
                                                 </td>
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -70,14 +88,14 @@
                         <div class="card">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title ">Carts</h4>
-                                <p class="card-category">{{ $user->cart->count() }} Products</p>
+                                <p class="card-category">Products</p>
                             </div>
                             <div class="card-body">
                                 <!--Cart-->
                                 <div class="row">
                                     <div class="table-responsive">
                                         <div class="columns is-multiline"></div>
-                                        @foreach ($user->cart->products as $product)
+                                        {{-- @foreach ($user->cart->products as $product)
                                             <div class="column is-4">
                                                 <div class="card">
                                                     <div class="card-content">
@@ -92,7 +110,7 @@
 
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        @endforeach --}}
 
                                     </div>
                                 </div>

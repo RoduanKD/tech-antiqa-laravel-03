@@ -31,12 +31,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 */
 
-Route::get('/', [PagesController::class, 'welcome']);
+Route::get('/', [PagesController::class, 'welcome'])->name('welcome');
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    
+
     Route::resource('deliveries', DeliveryCompanyController::class);
     Route::get('/terms/edit', [TermsController::class, 'edit'])->name('admin.terms.edit');
     Route::get('/terms/show', [TermsController::class, 'show'])->name('admin.terms.show');
