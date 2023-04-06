@@ -1,20 +1,21 @@
-@extends('layouts.app', ['activePage' => 'product', 'titlePage' => 'product'])
+@extends('layouts.app', ['activePage' => 'product', 'titlePage' => 'edit product'])
 @section('content')
     <div class="content">
         <div class="section">
             <div class="container">
                 <ul>
-                    @foreach ($errors->all() as $error) @endforeach
+                    @foreach ($errors->all() as $error)
+                    @endforeach
                 </ul>
                 <!--USER FORME-->
                 <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data"
                     autocomplete="off" class="form-horizontal">
-                    @csrf
                     @method('PUT')
+                    @csrf
                     <!--STATIC SECTION-->
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title"> Create Product</h4>
+                            <h4 class="card-title"> Update {{ $product->name }} Product</h4>
                             <p class="card-category">{{ __('Product') }}</p>
                         </div>
                         <div class="card-body ">
@@ -22,8 +23,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="alert alert-success">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <i class="material-icons">close</i>
                                             </button>
                                             <span>{{ session('status') }}</span>
@@ -36,7 +36,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class=" form-control @error('name')is-danger @enderror" name=" name"
+                                        <input class=" form-control" name=" name"
                                             value="{{ old('name', $product->name) }}" id="input-name" type="text"
                                             placeholder="{{ __('Name') }}" aria-required="true" />
                                         @error('name')
@@ -50,9 +50,9 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Price') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class=" form-control @error('price')is-danger @enderror" name=" price"
-                                            value="{{ old('price', $product->price) }}" id="input-name" type="numeric"
-                                            placeholder="{{ __('100$') }}" aria-required="true" />
+                                        <input class=" form-control" name="price" type="numeric"
+                                            value="{{ old('price', $product->price) }}" placeholder="{{ __('100$') }}"
+                                            aria-required="true" />
                                         @error('price')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
@@ -64,8 +64,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Product Iamges') }}</label>
                                 <div class="col-sm-7">
                                     <div class="from-group">
-                                        <input class="file-input" type="file" name="photo"
-                                            value="{{ old('photo', $product->media->photo) }}">
+                                        <input class="file-input" type="file" name="image">
                                         <span class="file-cta">
                                             <span class="file-icon">
                                                 <i class="fas fa-upload"></i>
@@ -75,19 +74,18 @@
                                             </span>
                                         </span>
                                         </label>
-                                        @error('photo')
+                                        @error('image')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                             <!--VEDIO -->
-                            <div class="row">
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Product Vedio') }}</label>
                                 <div class="col-sm-7">
                                     <div class="from-group">
-                                        <input class="file-input" type="file" name="vedio"
-                                            value="{{ old('vedio', $product->media->vedio) }}">
+                                        <input class="file-input" type="file" name="vedio">
                                         <span class="file-cta">
                                             <span class="file-icon">
                                                 <i class="fas fa-upload"></i>
@@ -102,15 +100,15 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!--quantity-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('quantity') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class=" form-control @error('quantity')is-danger @enderror" name=" quantity"
-                                            value="{{ old('quantity', $product->quantity) }}" id="input-name"
-                                            type="number" placeholder="{{ __('4 pices') }}" aria-required="true" />
+                                        <input class=" form-control @error('quantity')is-danger @enderror" name="quantity"
+                                            value="{{ old('quantity', $product->quantity) }}" type="number"
+                                            placeholder="{{ __('4 pices') }}" aria-required="true" />
                                         @error('quantity')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
@@ -125,12 +123,12 @@
                                         <div class="control">
                                             <label class="radio">
                                                 <input type="radio" name="language" value="ar"
-                                                    value="{{ old('language', $product->language) }}">
+                                                    {{ $product->language == 'ar' ? 'checked' : '' }}>
                                                 Arabic
                                             </label>
                                             <label class="radio">
                                                 <input type="radio" name="language" value="en"
-                                                    value="{{ old('language', $product->language) }}">
+                                                    {{ $product->language == 'en' ? 'checked' : '' }}>
                                                 English
                                             </label>
                                         </div>
@@ -146,8 +144,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="select @error('category_id')is-danger @enderror">
-                                            <select name="category_id"
-                                                value="{{ old('category_id', $product->category_id) }}">
+                                            <select name="category_id">
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ $category->id == old('category_id') ? 'selected' : '' }}>
@@ -162,14 +159,13 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <!--Specification-->
-                            <div class="row">
+                            <!--Specification-->
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Specification</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="select @error('specification_id')is-danger @enderror">
-                                            <select name="specification_id"
-                                                value="{{ old('specification', $product->specification) }}">
+                                            <select name="specification_id">
                                                 @foreach ($categories->specifications as $specification)
                                                     <option value="{{ $specification->id }}"
                                                         {{ $specification->id == old('specification_id') ? 'selected' : '' }}>
@@ -191,13 +187,13 @@
                                     <div class="form-group">
                                         <div class="control">
                                             <label class="radio">
-                                                <input type="radio" name="is_used" value="new"
-                                                    value="{{ old('is_used', $product->is_used) }}">
+                                                <input type="radio" name="is_used" value="0"
+                                                    {{ $product->is_used == '0' ? 'checked' : '' }}>
                                                 New
                                             </label>
                                             <label class="radio">
-                                                <input type="radio" name="is_used" value="used"
-                                                    value="{{ old('is_used', $product->is_used) }}">
+                                                <input type="radio" name="is_used" value="1"
+                                                    {{ $product->is_used == '1' ? 'checked' : '' }}>
                                                 Used
                                             </label>
                                         </div>
@@ -215,12 +211,12 @@
                                         <div class="control">
                                             <label class="radio">
                                                 <input type="radio" name="auction" value="yes"
-                                                    value="{{ old('auction', $product->auction) }}">
+                                                    {{ $product->auction == 'yes' ? 'checked' : '' }}>
                                                 Yes
                                             </label>
                                             <label class="radio">
                                                 <input type="radio" name="auction" value="no"
-                                                    value="{{ old('auction', $product->auction) }}">
+                                                    {{ $product->auction == 'no' ? 'checked' : '' }}>
                                                 No
                                             </label>
                                         </div>
@@ -244,7 +240,7 @@
                         </div>
                         <!--SUBMIT -->
                         <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
                             <button type="submit" class="btn btn-primary">{{ __('Cancel') }}</button>
                         </div>
 
