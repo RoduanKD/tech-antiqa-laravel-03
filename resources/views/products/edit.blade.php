@@ -3,10 +3,18 @@
     <div class="content">
         <div class="section">
             <div class="container">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    @endforeach
-                </ul>
+                @if (session('status'))
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="material-icons">close</i>
+                                </button>
+                                <span>{{ session('status') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <!--USER FORME-->
                 <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data"
                     autocomplete="off" class="form-horizontal">

@@ -5,11 +5,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <ul>
-                        @if (Session::get('error'))
-                            <li>{{ Session::get('error') }}</li>
-                        @endif
-                    </ul>
+                    @if (session('status'))
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span>{{ session('status') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     <!--TITEL SECTION-->
                     <div class="card">
                         <div class="card-header card-header-primary">

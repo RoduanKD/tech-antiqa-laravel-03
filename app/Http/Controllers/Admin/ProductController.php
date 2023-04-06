@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdatePorductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -83,7 +84,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $this->authorize('update', $product);
-        return view('products.show', ['product' => $product]);
+        $categories = Category::all();
+        return view('products.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     /**
@@ -93,34 +95,22 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdatePorductRequest $request, Product $product)
     {
         $this->authorize('update', $product);
-        $request->validate([
-            'name'               => 'required|string|min:5|max:55',
-            'price'              => 'required|numeric',
-            'quantity'           => 'required|numeric:min:0,max:10',
-            'language'           => 'required',
-            'category_id'        => 'required|numeric|exists:categories,id',
-            'specification_id'   => 'required|numeric|exists:specifications,id',
-            'is_used'            => 'required',
-            'auction'            => 'required',
-            'photo'              => 'required|image',
-            'vedio'              => 'required|vedio'
+        $data = $request->validated();
+        if (isset($data['name'])) {
+            $data['slug'] = Str::slug($data['name']);
+        }
+        $product->update($data);
 
-        ]);
-        $product->name             = $request->name;
-        $product->price            = $request->price;
-        $product->quantity         = $request->quantity;
-        $product->language         = $request->language;
-        $product->category_id      = $request->category_id;
-        $product->specification_id = $request->specification_id;
-        $product->is_used          = $request->is_used;
-        $product->auction          = $request->auction;
-        $product->save();
-        $product->addMediaFromRequest('photo')->toMediaCollection('media');
-        $product->addMediaFromRequest('vedio')->toMediaCollection('media');
-        return redirect()->route('products.show', $product);
+        if (isset($data['image'])) {
+            $product->clearMediaCollection('images');
+            $product->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+
+        // $product->addMediaFromRequest('vedio')->toMediaCollection('media');
+        return redirect()->route('products.show', $product)->with('status', 'success');
     }
 
     /**
@@ -133,6 +123,6 @@ class ProductController extends Controller
     {
         $this->authorize('delete', $product);
         $product->delete();
-        return redirect()->back();
+        return redirect()->route('products.index')->with('status', 'Successfuly Deleted');
     }
 }
