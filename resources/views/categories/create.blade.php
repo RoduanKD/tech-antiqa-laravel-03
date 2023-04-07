@@ -3,11 +3,6 @@
     <div class="content">
         <div class="section">
             <div class="container">
-                <ul>
-                    @if (Session::get('error'))
-                        <li>{{ Session::get('error') }}</li>
-                    @endif
-                </ul>
                 <!--USER FORME-->
                 <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off"
                     class="form-horizontal">
@@ -16,9 +11,10 @@
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title"> Create New Category</h4>
-                            <p class="card-category">{{ __('Product') }}</p>
+                            <p class="card-category">{{ __('Category') }}</p>
                         </div>
                         <div class="card-body ">
+                            <!-- STATUS -->
                             @if (session('status'))
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -51,15 +47,6 @@
                                 <div class="col-sm-7">
                                     <div class="from-group">
                                         <input class="file-input" type="file" name="image">
-                                        <span class="file-cta">
-                                            <span class="file-icon">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="file-label">
-                                                {{ __('Choose a file…') }}
-                                            </span>
-                                        </span>
-                                        </label>
                                         @error('image')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror

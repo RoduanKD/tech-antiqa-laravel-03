@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('price');
             $table->string('slug')->nullable();
+            $table->string('description')->nullable();
             $table->string('language');
             $table->boolean('is_used');
             $table->integer('quantity');

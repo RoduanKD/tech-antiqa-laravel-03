@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdatePorductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Support\Str;
+use Auth;
+use Illuminate\Http\Request;
+use Str;
 
 class ProductController extends Controller
 {
@@ -17,15 +19,49 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Product::class);
-        $products = Product::all();
-        return view('admin.product.index', ['products' => $products]);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->authorize('create', Product::class);
+        $categories = Category::all();
+        return view('products.create', ['categories' => $categories]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreProductRequest $request)
+    {
+
+        $this->authorize('create', Product::class);
+        $data = $request->validated();
+        $data['user_id'] = Auth::user()->id;
+        $data['slug'] = Str::lower(str_replace(' ', '-', $data['name'])) ?? null;
+        $product = Product::create($data);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $product->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        // $product->specification_id = $request->specification_id;
+        // $product->auction          = $request->auction;
+        // $product->addMediaFromRequest('vedio')->toMediaCollection('media');
+
+        return redirect()->route('welcome');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
@@ -37,21 +73,21 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
     {
         $this->authorize('update', $product);
         $categories = Category::all();
-        return view('admin.product.edit', ['product' => $product, 'categories' => $categories]);
+        return view('products.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePorductRequest $request, Product $product)
@@ -69,13 +105,13 @@ class ProductController extends Controller
         }
 
         // $product->addMediaFromRequest('vedio')->toMediaCollection('media');
-        return redirect()->route('products.show', $product)->with('status', 'Successfuly updated');
+        return redirect()->route('products.show', $product)->with('status', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)

@@ -4,7 +4,8 @@
         <div class="section">
             <div class="container">
                 <ul>
-                    @foreach ($errors->all() as $error) @endforeach
+                    @foreach ($errors->all() as $error)
+                    @endforeach
                 </ul>
                 <!--USER FORME-->
                 <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data"
@@ -14,16 +15,15 @@
                     <!--STATIC -->
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title"> Create New Category</h4>
-                            <p class="card-category">{{ __('Product') }}</p>
+                            <h4 class="card-title"> Update {{ $category->name }}</h4>
+                            <p class="card-category">{{ __('Category') }}</p>
                         </div>
                         <div class="card-body ">
                             @if (session('status'))
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="alert alert-success">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <i class="material-icons">close</i>
                                             </button>
                                             <span>{{ session('status') }}</span>
@@ -50,18 +50,9 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Category Iamge') }}</label>
                                 <div class="col-sm-7">
                                     <div class="from-group">
-                                        <input class="file-input" type="file" name="photo"
-                                            value="{{ old('photo', $category->photo) }}">
-                                        <span class="file-cta">
-                                            <span class="file-icon">
-                                                <i class="fas fa-upload"></i>
-                                            </span>
-                                            <span class="file-label">
-                                                {{ __('Choose a file…') }}
-                                            </span>
-                                        </span>
-                                        </label>
-                                        @error('photo')
+                                        <input class="file-input" type="file" name="image"
+                                            value="{{ old('image', $category->image) }}">
+                                        @error('image')
                                             <div class="help is-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -78,5 +69,4 @@
             </div>
         </div>
     </div>
-
 @endsection

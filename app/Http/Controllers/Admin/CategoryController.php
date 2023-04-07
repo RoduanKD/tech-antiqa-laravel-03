@@ -89,7 +89,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
         $category->addMediaFromRequest('photo')->toMediaCollection('media');
-        return redirect()->route('categories.show');
+        return redirect()->route('categories.index');
     }
 
     /**

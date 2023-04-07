@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryCompany;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class DeliveryCompanyController extends Controller
 {
@@ -43,17 +44,17 @@ class DeliveryCompanyController extends Controller
             'phone_number'  => 'required|phone:AUTO,KSA',
             'email'         => 'required|email|unique:delivery_companies',
         ]);
-        $delivery = new DeliveryCompany();
-        $delivery = DeliveryCompany::create([
+        $deliveryCompany = new DeliveryCompany();
+        $deliveryCompany = DeliveryCompany::create([
             'name'              => ['en' => $request->name],
             'address'           => ['en' => $request->address]
         ]);
-        // $delivery->name         = $request->name;
-        // $delivery->address      = $request->address;
-        $delivery->phone_number = $request->phone_number;
-        $delivery->email        = $request->email;
-        $delivery->save();
-        return redirect()->route('deliveries.index', $delivery);
+        // $deliveryCompany->name         = $request->name;
+        // $deliveryCompany->address      = $request->address;
+        $deliveryCompany->phone_number = $request->phone_number;
+        $deliveryCompany->email        = $request->email;
+        $deliveryCompany->save();
+        return redirect()->route('deliveries.index', $deliveryCompany);
     }
 
     /**
@@ -64,7 +65,7 @@ class DeliveryCompanyController extends Controller
      */
     public function show(DeliveryCompany $deliveryCompany)
     {
-        //
+        return view('deliveries.show', ['deliveryCompany' => $deliveryCompany]);
     }
 
     /**
@@ -75,7 +76,7 @@ class DeliveryCompanyController extends Controller
      */
     public function edit(DeliveryCompany $deliveryCompany)
     {
-        //
+        return view('deliveries.edit',['deliveryCompany' => $deliveryCompany]);
     }
 
     /**
@@ -87,7 +88,22 @@ class DeliveryCompanyController extends Controller
      */
     public function update(Request $request, DeliveryCompany $deliveryCompany)
     {
-        //
+        $request->validate([
+            'name'          => 'required|string|min:5|max:55',
+            'adderss'       => 'required|string|min:5|max:55',
+            'phone_number'  => 'required|phone:AUTO,KSA',
+            'email'         => 'required|email|unique:delivery_companies',
+        ]);
+        $deliveryCompany = DeliveryCompany::create([
+            'name'              => ['en' => $request->name],
+            'address'           => ['en' => $request->address]
+        ]);
+        // $deliveryCompany->name         = $request->name;
+        // $deliveryCompany->address      = $request->address;
+        $deliveryCompany->phone_number = $request->phone_number;
+        $deliveryCompany->email        = $request->email;
+        $deliveryCompany->save();
+        return redirect()->route('deliveries.show');
     }
 
     /**

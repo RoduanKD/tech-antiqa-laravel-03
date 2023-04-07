@@ -4,10 +4,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        @endforeach
-                    </ul>
+                    <!-- STATUS SECTION-->
+                    @if (session('status'))
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span>{{ session('status') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     <!--TITEL SECTION-->
                     <div class="card">
                         <div class="card-header card-header-primary">
@@ -15,7 +24,7 @@
                             <p class="card-category"> You have {{ $categories->count() }} categories</p>
                         </div>
                         <div class="card-body">
-                            {{-- ADD CATEGORY --}}
+                            <!-- ADD CATEGORY -->
                             <div class="row">
                                 <div class="col-12 text-right">
                                     <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary">Add
@@ -66,7 +75,7 @@
                                                     {{ $category->products->count() }}
                                                 </td>
                                                 <td>
-                                                    {{ $category->created_at }}
+                                                    {{ $category->created_at->format('d M y') }}
                                                 </td>
                                                 <!-- EDIT -->
                                                 <td class="td-actions text-right">

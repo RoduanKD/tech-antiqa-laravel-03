@@ -137,11 +137,19 @@ namespace App\Models{
 /**
  * App\Models\Country
  *
+ * @property int $id
+ * @property mixed $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\City[] $cities
  * @property-read int|null $cities_count
  * @method static \Illuminate\Database\Eloquent\Builder|Country newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Country newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereUpdatedAt($value)
  */
 	class Country extends \Eloquent {}
 }
@@ -242,6 +250,7 @@ namespace App\Models{
  * @property int $category_id
  * @property int $user_id
  * @property int $price
+ * @property string|null $slug
  * @property string $language
  * @property int $is_used
  * @property int $quantity
@@ -269,6 +278,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUserId($value)
  */
